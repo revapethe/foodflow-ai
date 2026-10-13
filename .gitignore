@@ -1,0 +1,11 @@
+.venv/
+.env
+profiles.yml
+__pycache__/
+.pytest_cache/
+logs/
+target/
+dbt_packages/
+*.db
+*.sqlite
+.airflow/

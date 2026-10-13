@@ -1,0 +1,1 @@
+select order_id, user_id as customer_key, restaurant_id as restaurant_key, ordered_at, to_date(ordered_at) as order_date, status, payment_method, delivery_minutes, delivery_fee, order_total from {{ ref('stg_orders') }}

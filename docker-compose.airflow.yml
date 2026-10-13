@@ -1,0 +1,20 @@
+# Optional Airflow local scheduler; see README for first-run commands.
+services:
+  airflow:
+    image: apache/airflow:2.10.5-python3.11
+    user: "${AIRFLOW_UID:-50000}:0"
+    ports: ["8080:8080"]
+    volumes:
+      - ./:/opt/airflow/foodflow
+      - ./dags:/opt/airflow/dags
+      - airflow_data:/opt/airflow
+    env_file: [.env]
+    environment:
+      AIRFLOW__CORE__EXECUTOR: SequentialExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: sqlite:////opt/airflow/airflow.db
+      AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+      AIRFLOW__WEBSERVER__SECRET_KEY: dev-only-not-for-production
+      PYTHONPATH: /opt/airflow/foodflow
+    command: bash -c 'pip install --no-cache-dir -r /opt/airflow/foodflow/requirements-cloud.txt && airflow db migrate && (airflow users create --username admin --firstname Admin --lastname User --role Admin --email admin@example.com --password admin || true) && airflow scheduler & exec airflow webserver'
+volumes:
+  airflow_data:

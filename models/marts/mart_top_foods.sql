@@ -1,0 +1,1 @@
+select f.food_name,f.category,sum(i.quantity) as units_sold,round(sum(i.line_total),2) as item_revenue from {{ ref('fact_order_items') }} i join {{ ref('dim_food') }} f on i.food_key=f.food_key join {{ ref('fact_orders') }} o on i.order_id=o.order_id where o.status='delivered' group by 1,2

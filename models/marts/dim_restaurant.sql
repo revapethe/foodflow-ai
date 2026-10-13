@@ -1,0 +1,1 @@
+select restaurant_id as restaurant_key, restaurant_name, city, cuisine from {{ ref('stg_restaurant') }}

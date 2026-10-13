@@ -1,0 +1,11 @@
+name: foodflow
+version: '1.0.0'
+config-version: 2
+profile: foodflow
+model-paths: [models]
+models:
+  foodflow:
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table

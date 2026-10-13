@@ -1,0 +1,33 @@
+version: 2
+models:
+  - name: dim_customer
+    columns:
+      - name: customer_key
+        data_tests: [not_null, unique]
+  - name: dim_restaurant
+    columns:
+      - name: restaurant_key
+        data_tests: [not_null, unique]
+  - name: fact_orders
+    columns:
+      - name: order_id
+        data_tests: [not_null, unique]
+      - name: customer_key
+        data_tests:
+          - relationships:
+              to: ref('dim_customer')
+              field: customer_key
+      - name: restaurant_key
+        data_tests:
+          - relationships:
+              to: ref('dim_restaurant')
+              field: restaurant_key
+  - name: fact_order_items
+    columns:
+      - name: order_item_id
+        data_tests: [not_null, unique]
+      - name: order_id
+        data_tests:
+          - relationships:
+              to: ref('fact_orders')
+              field: order_id

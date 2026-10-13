@@ -1,0 +1,1 @@
+select user_id as customer_key, user_name, city, signup_date from {{ ref('stg_users') }}

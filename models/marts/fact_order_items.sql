@@ -1,0 +1,1 @@
+select oi.order_item_id, oi.order_id, m.restaurant_id as restaurant_key, m.food_id as food_key, oi.quantity, oi.unit_price, oi.line_total from {{ ref('stg_order_items') }} oi join {{ ref('stg_menu') }} m on oi.menu_id=m.menu_id

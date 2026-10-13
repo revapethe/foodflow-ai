@@ -1,0 +1,1 @@
+select review_id, order_id, user_id as customer_key, restaurant_id as restaurant_key, rating, review_text from {{ ref('stg_reviews') }}

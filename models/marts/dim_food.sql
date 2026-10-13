@@ -1,0 +1,1 @@
+select food_id as food_key, food_name, category from {{ ref('stg_food') }}

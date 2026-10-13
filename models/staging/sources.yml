@@ -1,0 +1,13 @@
+version: 2
+sources:
+  - name: raw
+    database: "{{ env_var('SNOWFLAKE_DATABASE') }}"
+    schema: RAW
+    tables:
+      - name: USERS
+      - name: RESTAURANT
+      - name: FOOD
+      - name: MENU
+      - name: ORDERS
+      - name: ORDER_ITEMS
+      - name: REVIEWS

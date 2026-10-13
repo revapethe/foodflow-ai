@@ -1,0 +1,1 @@
+select order_date, count(*) as delivered_orders, round(sum(order_total),2) as revenue, round(avg(order_total),2) as avg_order_value from {{ ref('fact_orders') }} where status='delivered' group by 1
