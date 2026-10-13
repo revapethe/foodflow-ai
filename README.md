@@ -88,11 +88,7 @@ dbt produces the following core tables:
 
 Delivered-order revenue and food-item revenue have different definitions: item revenue excludes delivery fees. See the SQL models for exact metric definitions.
 
-## Dashboard
 
-The cloud dashboard is implemented in `cloud/dashboard.py` and uses a red-and-white theme.
-
-**Add real screenshots here after running the app:**
 
 ```markdown
 ![Overview dashboard](assets/screenshots/overview.png)
@@ -101,16 +97,6 @@ The cloud dashboard is implemented in `cloud/dashboard.py` and uses a red-and-wh
 ![Natural language SQL](assets/screenshots/ask-in-english.png)
 ```
 
-
-
-## Quality and testing
-
-```bash
-python -m pytest -q
-dbt build --profiles-dir .
-```
-
-Tests cover aspects of the synthetic data pipeline, data relationships, cloud code contracts and AI helper logic. Offline tests do **not** prove that AWS, Snowflake or OpenAI integrations have run successfully.
 
 ## Project structure
 
