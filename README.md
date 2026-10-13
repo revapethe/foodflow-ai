@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🍽️ FoodFlow AI
+# FoodFlow AI
 ### End-to-End Cloud Data Engineering & AI-Powered Food Delivery Analytics
 
 **From raw orders to actionable insights — with a modern red-and-white analytics experience.**
