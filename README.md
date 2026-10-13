@@ -26,6 +26,7 @@ The project also includes two optional generative-AI extensions:
 
 The cloud integrations require your own AWS, Snowflake, and OpenAI configuration. The repository also provides a local SQLite demo.
 
+
 ## Architecture
 
 ```mermaid
@@ -48,6 +49,7 @@ flowchart TD
 
 **Data layers:** Source → S3 data lake → Snowflake RAW (bronze) → dbt staging (silver) → dbt analytics marts (gold) → dashboard / AI experiences.
 
+
 ## Features
 
 | Area | Implementation |
@@ -64,6 +66,7 @@ flowchart TD
 
 > **Implementation status:** The source code and offline tests are included. Cloud services and AI features must be configured and validated in your own environment. Review enrichment is triggered manually in the UI; it is not yet part of the Airflow DAG.
 
+
 ## Datasets
 
 | File | Description |
@@ -78,6 +81,7 @@ flowchart TD
 
 The datasets are related through identifiers, enabling referential-integrity checks and multi-table analysis.
 
+
 ## 📊 Analytics models
 
 dbt produces the following core tables:
@@ -88,14 +92,6 @@ dbt produces the following core tables:
 
 Delivered-order revenue and food-item revenue have different definitions: item revenue excludes delivery fees. See the SQL models for exact metric definitions.
 
-
-
-```markdown
-![Overview dashboard](assets/screenshots/overview.png)
-![Restaurant analytics](assets/screenshots/restaurants.png)
-![Review intelligence](assets/screenshots/review-intelligence.png)
-![Natural language SQL](assets/screenshots/ask-in-english.png)
-```
 
 
 ## Project structure
@@ -134,6 +130,7 @@ foodflow-ai-cloud/
 - AWS S3, Snowflake and OpenAI may incur charges. Set budgets and suspend idle warehouses.
 - All included business data is synthetic, not real Zomato or customer data.
 
+
 ## Future improvements
 
 - Incremental ingestion and CDC instead of full raw-table refresh
@@ -141,6 +138,7 @@ foodflow-ai-cloud/
 - Add query audit logs and stronger SQL governance
 - Add data freshness monitoring and alerting
 - Deploy the dashboard and add verified execution screenshots
+
 
 ## Acknowledgments
 
