@@ -3,7 +3,6 @@
 # FoodFlow AI
 ### End-to-End Cloud Data Engineering & AI-Powered Food Delivery Analytics
 
-**From raw orders to actionable insights — with a modern red-and-white analytics experience.**
 
 ![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)
 ![AWS S3](https://img.shields.io/badge/AWS%20S3-569A31?logo=amazons3&logoColor=white)
