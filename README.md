@@ -10,14 +10,13 @@
 ![Snowflake](https://img.shields.io/badge/Snowflake-29B5E8?logo=snowflake&logoColor=white)
 ![dbt](https://img.shields.io/badge/dbt-FF694B?logo=dbt&logoColor=white)
 ![Airflow](https://img.shields.io/badge/Apache%20Airflow-017CEE?logo=apacheairflow&logoColor=white)
-![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?logo=streamlit&logoColor=white)
 ![OpenAI](https://img.shields.io/badge/OpenAI-412991?logo=openai&logoColor=white)
 
 </div>
 
 ---
 
-## 📌 Overview
+## Overview
 
 **FoodFlow AI** is a portfolio-scale food-delivery analytics platform built around seven related **synthetic** CSV datasets. It demonstrates how to ingest data into a cloud data lake, load a Snowflake warehouse, model analytics-ready datasets with dbt, and explore business performance through a Streamlit dashboard.
 
@@ -28,7 +27,7 @@ The project also includes two optional generative-AI extensions:
 
 The cloud integrations require your own AWS, Snowflake, and OpenAI configuration. The repository also provides a local SQLite demo.
 
-## 🏗️ Architecture
+## Architecture
 
 ```mermaid
 flowchart TD
@@ -50,7 +49,7 @@ flowchart TD
 
 **Data layers:** Source → S3 data lake → Snowflake RAW (bronze) → dbt staging (silver) → dbt analytics marts (gold) → dashboard / AI experiences.
 
-## ✨ Features
+## Features
 
 | Area | Implementation |
 |---|---|
@@ -66,7 +65,7 @@ flowchart TD
 
 > **Implementation status:** The source code and offline tests are included. Cloud services and AI features must be configured and validated in your own environment. Review enrichment is triggered manually in the UI; it is not yet part of the Airflow DAG.
 
-## 🗃️ Datasets
+## Datasets
 
 | File | Description |
 |---|---|
@@ -90,7 +89,7 @@ dbt produces the following core tables:
 
 Delivered-order revenue and food-item revenue have different definitions: item revenue excludes delivery fees. See the SQL models for exact metric definitions.
 
-## 🖥️ Dashboard
+## Dashboard
 
 The cloud dashboard is implemented in `cloud/dashboard.py` and uses a red-and-white theme.
 
@@ -103,9 +102,9 @@ The cloud dashboard is implemented in `cloud/dashboard.py` and uses a red-and-wh
 ![Natural language SQL](assets/screenshots/ask-in-english.png)
 ```
 
-Do not present conceptual UI mockups as executed application screenshots.
 
-## 🧪 Quality and testing
+
+## Quality and testing
 
 ```bash
 python -m pytest -q
@@ -114,7 +113,7 @@ dbt build --profiles-dir .
 
 Tests cover aspects of the synthetic data pipeline, data relationships, cloud code contracts and AI helper logic. Offline tests do **not** prove that AWS, Snowflake or OpenAI integrations have run successfully.
 
-## 📁 Project structure
+## Project structure
 
 ```text
 foodflow-ai-cloud/
@@ -141,7 +140,7 @@ foodflow-ai-cloud/
 └── README.md
 ```
 
-## 🔐 Security and cost notes
+## Security and cost notes
 
 - Keep S3 buckets private; use minimum-required IAM permissions.
 - Exclude `.env`, secrets, local dbt profiles and virtual environments from Git.
@@ -150,7 +149,7 @@ foodflow-ai-cloud/
 - AWS S3, Snowflake and OpenAI may incur charges. Set budgets and suspend idle warehouses.
 - All included business data is synthetic, not real Zomato or customer data.
 
-## 🛣️ Future improvements
+## Future improvements
 
 - Incremental ingestion and CDC instead of full raw-table refresh
 - Schedule review enrichment with Airflow
@@ -158,7 +157,7 @@ foodflow-ai-cloud/
 - Add data freshness monitoring and alerting
 - Deploy the dashboard and add verified execution screenshots
 
-## 📚 Acknowledgments
+## Acknowledgments
 
 Built as an independent learning and portfolio implementation, inspired by common food-delivery analytics architectures. Developed with AI-assisted coding support; verify and customize the implementation before presenting it as completed production work.
 
@@ -168,6 +167,5 @@ Built as an independent learning and portfolio implementation, inspired by commo
 
 **FoodFlow AI** · Data Engineering × Analytics × Generative AI
 
-*From raw food-delivery data to better business decisions.*
 
 </div>
