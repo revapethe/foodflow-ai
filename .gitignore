@@ -23,3 +23,5 @@ frontend/.next-postgres/
 
 artifacts/
 frontend/.next-intelligence/
+
+frontend/.next-assistant/

@@ -9,6 +9,8 @@ from fastapi import Depends, FastAPI, HTTPException, Query
 from src.config import DB
 from api.database import PostgresConnection, WarehouseUnavailable
 from api.intelligence import insights
+from api.assistant import answer
+from pydantic import BaseModel, ConfigDict, Field
 
 app = FastAPI(title="FoodFlow Intelligence API", version="1.0.0")
 
@@ -117,3 +119,20 @@ def intelligence(
     if start and end and start>end:
         raise HTTPException(422, 'start must be on or before end')
     return insights(db,city,start,end)
+
+
+class AssistantQuestion(BaseModel):
+    model_config = ConfigDict(extra='forbid')
+    question: str = Field(min_length=1, max_length=500)
+    city: str | None = Field(default=None, max_length=100)
+    start: date | None = None
+    end: date | None = None
+
+
+@app.post('/assistant')
+def assistant(request: AssistantQuestion, db: Annotated[sqlite3.Connection, Depends(connection)]):
+    if not request.question.strip():
+        raise HTTPException(422, 'Question must not be blank')
+    if request.start and request.end and request.start > request.end:
+        raise HTTPException(422, 'start must be on or before end')
+    return answer(db, request.question, request.city, request.start, request.end)

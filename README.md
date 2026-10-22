@@ -29,7 +29,7 @@ The cloud integrations require your own AWS, Snowflake, and OpenAI configuration
 
 ## Free development phases
 
-The Next.js/FastAPI dashboard preserves the original pipelines and datasets. See [Phase 2 warehouse runbook](PHASE2.md) for incremental PostgreSQL ETL and [Phase 3 demand intelligence](PHASE3.md) for offline forecasting, measured model evaluation, anomaly screening, and cloud-workspace run instructions. SQLite remains the default; these phases require no paid service. The public demo remains on Phase 1 until rollout is reviewed.
+The Next.js/FastAPI dashboard preserves the original pipelines and datasets. See [Phase 2 warehouse runbook](PHASE2.md) for incremental PostgreSQL ETL and [Phase 3 demand intelligence](PHASE3.md) for offline forecasting, measured model evaluation, anomaly screening, and cloud-workspace run instructions. See [Phase 4 warehouse assistant](PHASE4.md) for free, bounded natural-language questions backed by visible SQL and actual results. SQLite remains the default; these phases require no paid service. Public demo updates are deployed separately after rollout review.
 
 ## Architecture
 

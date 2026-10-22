@@ -181,6 +181,9 @@ def test_postgres_api_matches_sqlite_and_reader_cannot_write(pg,tmp_path,monkeyp
     cases=[{}, {'city':'Denver'},{'city':'Denver','start':'2025-03-01','end':'2025-06-30'}, {'start':'2099-01-01'}, {'city':"'; DROP TABLE fact_orders;--"}]
     with TestClient(app) as client:
         expected=[client.get('/analytics',params=p).json() for p in cases]
+        from api.assistant import EXAMPLES
+        assistant_expected=[client.post('/assistant',json={'question':q}).json() for q in EXAMPLES]
+
     monkeypatch.setenv('FOODFLOW_DATABASE_URL',reader_dsn)
     with TestClient(app) as client:
         assert client.get('/health').json()=={'status':'ok'}
@@ -192,6 +195,14 @@ def test_postgres_api_matches_sqlite_and_reader_cannot_write(pg,tmp_path,monkeyp
             reference.pop('source')
             assert actual==reference
         assert client.get('/analytics?start=bad').status_code==422
+        for question,reference in zip(EXAMPLES,assistant_expected):
+            response=client.post('/assistant',json={'question':question})
+            assert response.status_code==200,response.text
+            actual=response.json()
+            assert actual['status']=='answered'
+            actual.pop('queried_at'); reference.pop('queried_at')
+            assert actual==reference
+
     reader=PostgresConnection(reader_dsn)
     try:
         with pytest.raises(WarehouseUnavailable):reader.execute('DELETE FROM fact_orders')
