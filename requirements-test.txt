@@ -1,0 +1,6 @@
+-r requirements-api.txt
+# Imports used by the existing offline cloud-contract and SQL validation tests.
+snowflake-connector-python>=3.10,<5
+python-dotenv>=1,<2
+sqlglot>=26,<29
+-r requirements-ml.txt

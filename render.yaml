@@ -1,0 +1,15 @@
+# In Render: New > Blueprint, select this repository and Phase 1 branch.
+# Publishing is a separate user action; this file does not create a service.
+services:
+  - type: web
+    name: foodflow-intelligence-demo
+    runtime: docker
+    branch: feature/phase-1-intelligence-dashboard
+    plan: free
+    autoDeployTrigger: off
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /api/health
+    envVars:
+      - key: PORT
+        value: "10000"
