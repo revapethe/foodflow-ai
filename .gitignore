@@ -9,3 +9,13 @@ dbt_packages/
 *.db
 *.sqlite
 .airflow/
+
+# Next.js local artifacts
+frontend/node_modules/
+frontend/.next/
+frontend/*.tsbuildinfo
+frontend/.env*.local
+frontend/test-results/
+frontend/playwright-report/
+
+.venv-api/

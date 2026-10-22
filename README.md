@@ -152,3 +152,9 @@ Built as an independent learning and portfolio implementation, inspired by commo
 
 
 </div>
+
+## Next.js intelligence dashboard (Phase 1)
+
+A React / Tailwind dashboard and read-only FastAPI analytics service are available alongside the existing Streamlit applications. See [Phase 1 setup, architecture, metric definitions, and validation](PHASE1.md) for installation, startup commands, and the scope of subsequent phases.
+
+For a browser-accessible demo without local installation, see [Render deployment instructions](docs/RENDER_DEPLOYMENT.md). The deployment uses the Phase 1 branch, bundled synthetic data, and a single Docker service; service creation is a separate approval step.
