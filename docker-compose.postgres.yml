@@ -1,0 +1,19 @@
+# Local/cloud-workspace development only. Never expose this trust-auth DB publicly.
+services:
+  postgres:
+    image: postgres:16-bookworm
+    environment:
+      POSTGRES_DB: foodflow
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - "127.0.0.1:55432:5432"
+    volumes:
+      - foodflow_postgres_data:/var/lib/postgresql/data
+      - ./deploy/postgres/dev-init.sql:/docker-entrypoint-initdb.d/001-reader.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d foodflow"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+volumes:
+  foodflow_postgres_data:

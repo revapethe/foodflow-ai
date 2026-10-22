@@ -1,4 +1,4 @@
-"""Read-only analytics API over the existing local dimensional warehouse."""
+"""Read-only analytics API over the SQLite or PostgreSQL dimensional warehouse."""
 import os
 import sqlite3
 from datetime import date
@@ -7,6 +7,7 @@ from typing import Annotated
 
 from fastapi import Depends, FastAPI, HTTPException, Query
 from src.config import DB
+from api.database import PostgresConnection, WarehouseUnavailable
 
 app = FastAPI(title="FoodFlow Intelligence API", version="1.0.0")
 
@@ -14,14 +15,17 @@ app = FastAPI(title="FoodFlow Intelligence API", version="1.0.0")
 def connection():
     path = Path(os.getenv("FOODFLOW_DB_PATH", str(DB))).resolve()
     try:
-        # FastAPI may enter, execute, and close a sync dependency on different
-        # workers. This connection belongs to one request and is never shared.
-        db = sqlite3.connect(path.as_uri() + "?mode=ro", uri=True, timeout=5, check_same_thread=False)
-        db.row_factory = sqlite3.Row
-        db.execute("PRAGMA query_only = ON")
+        if os.getenv('FOODFLOW_DATABASE_URL'):
+            db = PostgresConnection(os.environ['FOODFLOW_DATABASE_URL'])
+        else:
+            # FastAPI workers may hand off this request-scoped connection.
+            db = sqlite3.connect(path.as_uri() + "?mode=ro", uri=True, timeout=5, check_same_thread=False)
+            db.row_factory = sqlite3.Row
+            db.execute("PRAGMA query_only = ON")
         yield db
-    except sqlite3.Error as exc:
-        raise HTTPException(503, "Analytics warehouse unavailable. Run python -m src.pipeline build.") from exc
+    except (sqlite3.Error, WarehouseUnavailable) as exc:
+        detail = "PostgreSQL analytics unavailable. Check the read-only role, migrations and successful ETL publication." if os.getenv('FOODFLOW_DATABASE_URL') else "Analytics warehouse unavailable. Run python -m src.pipeline build."
+        raise HTTPException(503, detail) from exc
     finally:
         if "db" in locals():
             db.close()
@@ -29,7 +33,8 @@ def connection():
 
 @app.get("/health")
 def health(db: Annotated[sqlite3.Connection, Depends(connection)]):
-    db.execute("SELECT order_id FROM fact_orders LIMIT 1").fetchone()
+    if db.execute("SELECT order_id FROM fact_orders LIMIT 1").fetchone() is None:
+        raise HTTPException(503, "Analytics warehouse has no published orders. Run the selected ETL workflow.")
     return {"status": "ok"}
 
 
@@ -60,7 +65,9 @@ def analytics(
     # One read transaction gives every panel a consistent warehouse snapshot.
     db.execute("BEGIN")
     bounds = dict(db.execute("SELECT MIN(order_date) AS start, MAX(order_date) AS end FROM fact_orders").fetchone())
-    cities = [r[0] for r in db.execute("SELECT DISTINCT city FROM dim_restaurant ORDER BY city")]
+    if bounds["start"] is None:
+        raise HTTPException(503, "Analytics warehouse has no published orders. Run the selected ETL workflow.")
+    cities = [r["city"] for r in db.execute("SELECT DISTINCT city FROM dim_restaurant ORDER BY city")]
     kpis = rows("""SELECT COUNT(*) AS all_orders,
         COUNT(CASE WHEN status='delivered' THEN 1 END) AS delivered_orders,
         ROUND(COALESCE(SUM(CASE WHEN status='delivered' THEN order_total END),0),2) AS revenue,
@@ -85,7 +92,7 @@ def analytics(
         JOIN dim_food f ON f.food_key=i.food_key WHERE o.status='delivered'
         GROUP BY f.food_key,f.food_name,f.category ORDER BY units DESC,f.food_key LIMIT 10""")
     statuses = rows("SELECT status, COUNT(*) AS orders FROM selected GROUP BY status ORDER BY status")
-    return {"source": "Bundled synthetic delivery data · SQLite warehouse",
+    return {"source": "Bundled synthetic delivery data · " + ("PostgreSQL warehouse" if isinstance(db,PostgresConnection) else "SQLite warehouse"),
             "filters": {"city": city, "start": start, "end": end},
             "available": {"cities": cities, **bounds}, "kpis": kpis, "daily": daily,
             "restaurants": restaurants, "products": products, "statuses": statuses,

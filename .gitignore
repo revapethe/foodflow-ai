@@ -19,3 +19,4 @@ frontend/test-results/
 frontend/playwright-report/
 
 .venv-api/
+frontend/.next-postgres/
