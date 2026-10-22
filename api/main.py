@@ -8,6 +8,7 @@ from typing import Annotated
 from fastapi import Depends, FastAPI, HTTPException, Query
 from src.config import DB
 from api.database import PostgresConnection, WarehouseUnavailable
+from api.intelligence import insights
 
 app = FastAPI(title="FoodFlow Intelligence API", version="1.0.0")
 
@@ -70,6 +71,9 @@ def analytics(
     cities = [r["city"] for r in db.execute("SELECT DISTINCT city FROM dim_restaurant ORDER BY city")]
     kpis = rows("""SELECT COUNT(*) AS all_orders,
         COUNT(CASE WHEN status='delivered' THEN 1 END) AS delivered_orders,
+        COUNT(CASE WHEN status='cancelled' THEN 1 END) AS cancelled_orders,
+        COUNT(CASE WHEN status='refunded' THEN 1 END) AS refunded_orders,
+        COUNT(CASE WHEN status='delivered' AND delivery_minutes>60 THEN 1 END) AS over_60_min_orders,
         ROUND(COALESCE(SUM(CASE WHEN status='delivered' THEN order_total END),0),2) AS revenue,
         ROUND(AVG(CASE WHEN status='delivered' THEN order_total END),2) AS average_order_value,
         ROUND(AVG(CASE WHEN status='delivered' THEN delivery_minutes END),1) AS average_delivery_minutes,
@@ -77,6 +81,10 @@ def analytics(
         FROM selected""")[0]
     kpis["average_rating"] = rows("""SELECT ROUND(AVG(v.rating),2) AS rating
         FROM fact_reviews v JOIN selected o ON o.order_id=v.order_id""")[0]["rating"]
+    kpis['units_sold'] = rows("SELECT COALESCE(SUM(i.quantity),0) AS n FROM selected o JOIN fact_order_items i ON i.order_id=o.order_id WHERE o.status='delivered'")[0]['n']
+    kpis['units_per_delivered_order'] = round(float(kpis['units_sold'])/kpis['delivered_orders'],2) if kpis['delivered_orders'] else None
+    kpis['over_60_min_percent'] = round(100*kpis['over_60_min_orders']/kpis['delivered_orders'],2) if kpis['delivered_orders'] else None
+    kpis['cancellation_percent'] = round(100*kpis['cancelled_orders']/kpis['all_orders'],2) if kpis['all_orders'] else None
     daily = rows("""SELECT order_date AS date, COUNT(*) AS orders,
         COUNT(CASE WHEN status='delivered' THEN 1 END) AS delivered_orders,
         ROUND(SUM(CASE WHEN status='delivered' THEN order_total ELSE 0 END),2) AS revenue
@@ -96,4 +104,16 @@ def analytics(
             "filters": {"city": city, "start": start, "end": end},
             "available": {"cities": cities, **bounds}, "kpis": kpis, "daily": daily,
             "restaurants": restaurants, "products": products, "statuses": statuses,
-            "forecast": {"status": "not_available", "reason": "No forecasting model has been trained or evaluated. Historical demand is available below."}}
+            "forecast": {"status": "separate_endpoint", "reason": "Evaluated forecasts and freshness checks are available from /intelligence."}}
+
+
+@app.get('/intelligence')
+def intelligence(
+    db: Annotated[sqlite3.Connection, Depends(connection)],
+    city: Annotated[str | None, Query(max_length=100)] = None,
+    start: date | None = None,
+    end: date | None = None,
+):
+    if start and end and start>end:
+        raise HTTPException(422, 'start must be on or before end')
+    return insights(db,city,start,end)

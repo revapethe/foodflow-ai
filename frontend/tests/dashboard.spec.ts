@@ -95,7 +95,7 @@ for (const width of [320, 768, 1440]) {
     await page.goto("/");
     await expect(page.getByLabel("Key performance indicators")).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBeTruthy();
-    await expect(page.locator(".recharts-area-curve")).toBeVisible();
+    await expect(page.getByRole("img", {name:/Daily revenue chart/}).locator(".recharts-area-curve")).toBeVisible();
     await expect(page.locator(".recharts-bar-rectangle").first()).toBeVisible();
     if (width < 1024) {
       await page.getByRole("navigation", {name:"Dashboard sections"}).getByRole("link", {name:"Products"}).click();

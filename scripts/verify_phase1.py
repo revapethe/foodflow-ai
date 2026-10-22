@@ -40,7 +40,7 @@ def verify(web_url, path):
                 ROUND(100.0*COUNT(CASE WHEN status='delivered' THEN 1 END)/NULLIF(COUNT(*),0),1) AS fulfillment_rate
                 FROM s''')[0]
             expected['average_rating'] = rows('SELECT ROUND(AVG(v.rating),2) AS rating FROM fact_reviews v JOIN s ON s.order_id=v.order_id')[0]['rating']
-            assert data['kpis'] == expected, (filters, data['kpis'], expected)
+            assert {k:data['kpis'][k] for k in expected} == expected, (filters, data['kpis'], expected)
             assert data['statuses'] == rows('SELECT status,COUNT(*) AS orders FROM s GROUP BY status ORDER BY status')
             assert data['daily'] == rows('''SELECT order_date AS date,COUNT(*) AS orders,
                 COUNT(CASE WHEN status='delivered' THEN 1 END) AS delivered_orders,

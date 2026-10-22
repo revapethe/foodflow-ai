@@ -32,7 +32,7 @@ def test_kpis_reconcile_with_database(warehouse):
     assert sum(d['orders'] for d in data['daily']) == 120
     assert round(sum(d['revenue'] for d in data['daily']), 2) == revenue
     assert sum(s['orders'] for s in data['statuses']) == 120
-    assert data['forecast']['status'] == 'not_available'
+    assert data['forecast']['status'] == 'separate_endpoint'
 
 
 def test_filters_apply_to_every_panel(warehouse):

@@ -22,3 +22,6 @@ dbt_packages
 .airflow
 
 frontend/.next-postgres
+
+artifacts
+frontend/.next-intelligence

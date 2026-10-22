@@ -1,0 +1,2431 @@
+{
+  "input_fingerprint": "2da16f89f58ec42a0a15af4694dadd4a4734c6055f504903ede9bcea20a6dd3c",
+  "markets": {
+    "Austin": {
+      "active_days": 260,
+      "anomalies": {
+        "evaluation": "No labeled incidents are available; precision, recall, and business impact are not established.",
+        "flags": [
+          {
+            "actual": 150.74,
+            "date": "2025-01-30",
+            "direction": "high",
+            "expected": 0.0,
+            "metric": "revenue",
+            "reference_points": 28,
+            "score": 150.74
+          },
+          {
+            "actual": 185.0,
+            "date": "2025-02-02",
+            "direction": "high",
+            "expected": 7.33,
+            "metric": "revenue",
+            "reference_points": 28,
+            "score": 16.3488
+          },
+          {
+            "actual": 14.66,
+            "date": "2025-02-01",
+            "direction": "high",
+            "expected": 0.0,
+            "metric": "revenue",
+            "reference_points": 28,
+            "score": 14.66
+          },
+          {
+            "actual": 283.01,
+            "date": "2025-10-23",
+            "direction": "high",
+            "expected": 17.88,
+            "metric": "revenue",
+            "reference_points": 8,
+            "score": 4.6643
+          },
+          {
+            "actual": 227.97,
+            "date": "2025-02-08",
+            "direction": "high",
+            "expected": 29.21,
+            "metric": "revenue",
+            "reference_points": 28,
+            "score": 4.5896
+          },
+          {
+            "actual": 295.39,
+            "date": "2025-06-21",
+            "direction": "high",
+            "expected": 17.785,
+            "metric": "revenue",
+            "reference_points": 8,
+            "score": 3.8543
+          },
+          {
+            "actual": 7.0,
+            "date": "2025-05-02",
+            "direction": "high",
+            "expected": 1.5,
+            "metric": "orders",
+            "reference_points": 8,
+            "score": 3.7097
+          },
+          {
+            "actual": 328.72,
+            "date": "2025-05-02",
+            "direction": "high",
+            "expected": 101.11,
+            "metric": "revenue",
+            "reference_points": 8,
+            "score": 3.686
+          }
+        ],
+        "lookback_days": 56,
+        "method": "Past-only weekday median and MAD with scale floors",
+        "minimum_prior_observations": 28,
+        "threshold": 3.5
+      },
+      "as_of": "2025-12-31",
+      "evaluation": {
+        "calibration_end": "2025-12-03",
+        "calibration_start": "2025-11-06",
+        "candidates": {
+          "ridge_autoregression": {
+            "label": "Ridge autoregression",
+            "test": {
+              "mae": 0.805462,
+              "rmse": 0.979427,
+              "wape_percent": 75.176477
+            },
+            "validation": {
+              "mae": 0.804415,
+              "rmse": 0.971145,
+              "wape_percent": 75.078716
+            }
+          },
+          "seasonal_naive": {
+            "label": "Weekly seasonal naive",
+            "test": {
+              "mae": 1.5,
+              "rmse": 1.792843,
+              "wape_percent": 140.0
+            },
+            "validation": {
+              "mae": 1.309524,
+              "rmse": 1.610974,
+              "wape_percent": 122.222222
+            }
+          },
+          "trailing_mean": {
+            "label": "28-day trailing mean",
+            "test": {
+              "mae": 0.918367,
+              "rmse": 1.049781,
+              "wape_percent": 85.714286
+            },
+            "validation": {
+              "mae": 0.811224,
+              "rmse": 1.006357,
+              "wape_percent": 75.714286
+            }
+          }
+        },
+        "error_band_nominal_percent": 80,
+        "error_band_width": 1.998756,
+        "folds": [
+          {
+            "train_end": "2025-09-24",
+            "validation_end": "2025-10-08",
+            "validation_start": "2025-09-25"
+          },
+          {
+            "train_end": "2025-10-08",
+            "validation_end": "2025-10-22",
+            "validation_start": "2025-10-09"
+          },
+          {
+            "train_end": "2025-10-22",
+            "validation_end": "2025-11-05",
+            "validation_start": "2025-10-23"
+          }
+        ],
+        "heldout": [
+          {
+            "actual": 0.0,
+            "date": "2025-12-04",
+            "lower": 0.0,
+            "prediction": 1.2413059250106016,
+            "upper": 3.240062049186201
+          },
+          {
+            "actual": 2.0,
+            "date": "2025-12-05",
+            "lower": 0.0,
+            "prediction": 1.404749291635147,
+            "upper": 3.4035054158107463
+          },
+          {
+            "actual": 0.0,
+            "date": "2025-12-06",
+            "lower": 0.0,
+            "prediction": 1.6469401240379482,
+            "upper": 3.6456962482135475
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-07",
+            "lower": 0.0,
+            "prediction": 1.2973941483768834,
+            "upper": 3.2961502725524827
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-08",
+            "lower": 0.0,
+            "prediction": 0.8213904737311157,
+            "upper": 2.820146597906715
+          },
+          {
+            "actual": 3.0,
+            "date": "2025-12-09",
+            "lower": 0.0,
+            "prediction": 0.8486740405817099,
+            "upper": 2.8474301647573093
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-10",
+            "lower": 0.0,
+            "prediction": 0.9757292966376995,
+            "upper": 2.974485420813299
+          },
+          {
+            "actual": 0.0,
+            "date": "2025-12-11",
+            "lower": 0.0,
+            "prediction": 1.2264561697808671,
+            "upper": 3.2252122939564662
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-12",
+            "lower": 0.0,
+            "prediction": 1.3773149474185997,
+            "upper": 3.376071071594199
+          },
+          {
+            "actual": 2.0,
+            "date": "2025-12-13",
+            "lower": 0.0,
+            "prediction": 1.4507152427840682,
+            "upper": 3.4494713669596675
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-14",
+            "lower": 0.0,
+            "prediction": 1.2167773185716484,
+            "upper": 3.2155334427472475
+          },
+          {
+            "actual": 0.0,
+            "date": "2025-12-15",
+            "lower": 0.0,
+            "prediction": 0.957646245055551,
+            "upper": 2.9564023692311503
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-16",
+            "lower": 0.0,
+            "prediction": 0.92849290926617,
+            "upper": 2.927249033441769
+          },
+          {
+            "actual": 0.0,
+            "date": "2025-12-17",
+            "lower": 0.0,
+            "prediction": 0.982087825196559,
+            "upper": 2.9808439493721584
+          },
+          {
+            "actual": 3.0,
+            "date": "2025-12-18",
+            "lower": 0.0,
+            "prediction": 1.175630117651683,
+            "upper": 3.1743862418272824
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-19",
+            "lower": 0.0,
+            "prediction": 1.4003577778447225,
+            "upper": 3.399113902020322
+          },
+          {
+            "actual": 0.0,
+            "date": "2025-12-20",
+            "lower": 0.0,
+            "prediction": 1.4776396708094495,
+            "upper": 3.4763957949850486
+          },
+          {
+            "actual": 2.0,
+            "date": "2025-12-21",
+            "lower": 0.0,
+            "prediction": 1.2570589956186111,
+            "upper": 3.2558151197942102
+          },
+          {
+            "actual": 0.0,
+            "date": "2025-12-22",
+            "lower": 0.0,
+            "prediction": 1.0025901516392128,
+            "upper": 3.001346275814812
+          },
+          {
+            "actual": 2.0,
+            "date": "2025-12-23",
+            "lower": 0.0,
+            "prediction": 0.9315710014736976,
+            "upper": 2.930327125649297
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-24",
+            "lower": 0.0,
+            "prediction": 1.0680510548782434,
+            "upper": 3.0668071790538427
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-25",
+            "lower": 0.0,
+            "prediction": 1.1894095741653814,
+            "upper": 3.1881656983409807
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-26",
+            "lower": 0.0,
+            "prediction": 1.3728876211216767,
+            "upper": 3.371643745297276
+          },
+          {
+            "actual": 2.0,
+            "date": "2025-12-27",
+            "lower": 0.0,
+            "prediction": 1.4586739263451507,
+            "upper": 3.45743005052075
+          },
+          {
+            "actual": 0.0,
+            "date": "2025-12-28",
+            "lower": 0.0,
+            "prediction": 1.229289558824632,
+            "upper": 3.2280456830002313
+          },
+          {
+            "actual": 0.0,
+            "date": "2025-12-29",
+            "lower": 0.0,
+            "prediction": 0.9196174343203256,
+            "upper": 2.918373558495925
+          },
+          {
+            "actual": 2.0,
+            "date": "2025-12-30",
+            "lower": 0.0,
+            "prediction": 0.9250283188376953,
+            "upper": 2.923784443013295
+          },
+          {
+            "actual": 2.0,
+            "date": "2025-12-31",
+            "lower": 0.0,
+            "prediction": 0.8751088745006063,
+            "upper": 2.8738649986762055
+          }
+        ],
+        "test_band_coverage_percent": 96.428571,
+        "test_days": 28,
+        "test_end": "2025-12-31",
+        "test_start": "2025-12-04"
+      },
+      "horizon_days": 14,
+      "limitations": [
+        "Synthetic source data; evaluation does not establish real-world predictive value.",
+        "Calendar gaps within warehouse coverage are treated as zero orders; upstream completeness is assumed.",
+        "Forecast origin follows the dataset, not today. No observations exist beyond as_of.",
+        "Error bands use 28 historical calibration errors; temporal dependence and small samples limit coverage guarantees.",
+        "Market-level order forecasts do not measure stock, supplier lead times or inventory requirements."
+      ],
+      "selected_label": "Ridge autoregression",
+      "selected_model": "ridge_autoregression",
+      "selection_rule": "Lowest mean absolute error across three expanding-window 14-day validation folds; final test excluded.",
+      "status": "ready",
+      "training_days": 365
+    },
+    "Boston": {
+      "active_days": 278,
+      "anomalies": {
+        "evaluation": "No labeled incidents are available; precision, recall, and business impact are not established.",
+        "flags": [
+          {
+            "actual": 478.95,
+            "date": "2025-11-14",
+            "direction": "high",
+            "expected": 34.185,
+            "metric": "revenue",
+            "reference_points": 8,
+            "score": 8.7461
+          },
+          {
+            "actual": 282.61,
+            "date": "2025-10-10",
+            "direction": "high",
+            "expected": 22.6,
+            "metric": "revenue",
+            "reference_points": 8,
+            "score": 5.4668
+          },
+          {
+            "actual": 451.24,
+            "date": "2025-09-06",
+            "direction": "high",
+            "expected": 52.71,
+            "metric": "revenue",
+            "reference_points": 8,
+            "score": 4.813
+          },
+          {
+            "actual": 363.38,
+            "date": "2025-05-25",
+            "direction": "high",
+            "expected": 29.615,
+            "metric": "revenue",
+            "reference_points": 8,
+            "score": 4.577
+          },
+          {
+            "actual": 278.81,
+            "date": "2025-12-27",
+            "direction": "high",
+            "expected": 43.535,
+            "metric": "revenue",
+            "reference_points": 8,
+            "score": 4.3471
+          },
+          {
+            "actual": 7.0,
+            "date": "2025-11-14",
+            "direction": "high",
+            "expected": 1.0,
+            "metric": "orders",
+            "reference_points": 8,
+            "score": 4.0469
+          },
+          {
+            "actual": 7.0,
+            "date": "2025-12-31",
+            "direction": "high",
+            "expected": 1.0,
+            "metric": "orders",
+            "reference_points": 8,
+            "score": 4.0469
+          },
+          {
+            "actual": 237.17,
+            "date": "2025-12-17",
+            "direction": "high",
+            "expected": 35.05,
+            "metric": "revenue",
+            "reference_points": 8,
+            "score": 3.8895
+          },
+          {
+            "actual": 257.11,
+            "date": "2025-12-31",
+            "direction": "high",
+            "expected": 37.555,
+            "metric": "revenue",
+            "reference_points": 8,
+            "score": 3.7297
+          },
+          {
+            "actual": 338.93,
+            "date": "2025-07-05",
+            "direction": "high",
+            "expected": 39.3,
+            "metric": "revenue",
+            "reference_points": 8,
+            "score": 3.6095
+          },
+          {
+            "actual": 4.0,
+            "date": "2025-03-18",
+            "direction": "high",
+            "expected": 0.5,
+            "metric": "orders",
+            "reference_points": 8,
+            "score": 3.5
+          }
+        ],
+        "lookback_days": 56,
+        "method": "Past-only weekday median and MAD with scale floors",
+        "minimum_prior_observations": 28,
+        "threshold": 3.5
+      },
+      "as_of": "2025-12-31",
+      "evaluation": {
+        "calibration_end": "2025-12-03",
+        "calibration_start": "2025-11-06",
+        "candidates": {
+          "ridge_autoregression": {
+            "label": "Ridge autoregression",
+            "test": {
+              "mae": 1.137556,
+              "rmse": 1.662369,
+              "wape_percent": 65.003177
+            },
+            "validation": {
+              "mae": 0.982584,
+              "rmse": 1.25852,
+              "wape_percent": 76.423164
+            }
+          },
+          "seasonal_naive": {
+            "label": "Weekly seasonal naive",
+            "test": {
+              "mae": 1.178571,
+              "rmse": 1.841971,
+              "wape_percent": 67.346939
+            },
+            "validation": {
+              "mae": 1.47619,
+              "rmse": 1.927248,
+              "wape_percent": 114.814815
+            }
+          },
+          "trailing_mean": {
+            "label": "28-day trailing mean",
+            "test": {
+              "mae": 0.954082,
+              "rmse": 1.416016,
+              "wape_percent": 54.51895
+            },
+            "validation": {
+              "mae": 1.168367,
+              "rmse": 1.443081,
+              "wape_percent": 90.873016
+            }
+          }
+        },
+        "error_band_nominal_percent": 80,
+        "error_band_width": 1.896852,
+        "folds": [
+          {
+            "train_end": "2025-09-24",
+            "validation_end": "2025-10-08",
+            "validation_start": "2025-09-25"
+          },
+          {
+            "train_end": "2025-10-08",
+            "validation_end": "2025-10-22",
+            "validation_start": "2025-10-09"
+          },
+          {
+            "train_end": "2025-10-22",
+            "validation_end": "2025-11-05",
+            "validation_start": "2025-10-23"
+          }
+        ],
+        "heldout": [
+          {
+            "actual": 1.0,
+            "date": "2025-12-04",
+            "lower": 0.0,
+            "prediction": 1.6440151112520331,
+            "upper": 3.540867247387869
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-05",
+            "lower": 0.0,
+            "prediction": 1.6350007771243278,
+            "upper": 3.5318529132601633
+          },
+          {
+            "actual": 0.0,
+            "date": "2025-12-06",
+            "lower": 0.0,
+            "prediction": 1.2707395989346921,
+            "upper": 3.167591735070528
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-07",
+            "lower": 0.0,
+            "prediction": 1.4074857159863956,
+            "upper": 3.304337852122231
+          },
+          {
+            "actual": 0.0,
+            "date": "2025-12-08",
+            "lower": 0.0,
+            "prediction": 1.2370645485981702,
+            "upper": 3.1339166847340056
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-09",
+            "lower": 0.0,
+            "prediction": 1.1075177649158632,
+            "upper": 3.0043699010516987
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-10",
+            "lower": 0.0,
+            "prediction": 1.5144931258001861,
+            "upper": 3.4113452619360216
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-11",
+            "lower": 0.0,
+            "prediction": 1.4558612120721448,
+            "upper": 3.3527133482079803
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-12",
+            "lower": 0.0,
+            "prediction": 1.435057827658524,
+            "upper": 3.3319099637943594
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-13",
+            "lower": 0.0,
+            "prediction": 1.2911981078987123,
+            "upper": 3.1880502440345477
+          },
+          {
+            "actual": 2.0,
+            "date": "2025-12-14",
+            "lower": 0.0,
+            "prediction": 0.9985790242689208,
+            "upper": 2.8954311604047565
+          },
+          {
+            "actual": 2.0,
+            "date": "2025-12-15",
+            "lower": 0.0,
+            "prediction": 0.8544365380226284,
+            "upper": 2.751288674158464
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-16",
+            "lower": 0.0,
+            "prediction": 0.7428864092646361,
+            "upper": 2.639738545400472
+          },
+          {
+            "actual": 3.0,
+            "date": "2025-12-17",
+            "lower": 0.0,
+            "prediction": 1.1111335520385677,
+            "upper": 3.0079856881744034
+          },
+          {
+            "actual": 2.0,
+            "date": "2025-12-18",
+            "lower": 0.0,
+            "prediction": 1.0767518084878922,
+            "upper": 2.9736039446237275
+          },
+          {
+            "actual": 2.0,
+            "date": "2025-12-19",
+            "lower": 0.0,
+            "prediction": 1.0118006763440612,
+            "upper": 2.9086528124798967
+          },
+          {
+            "actual": 3.0,
+            "date": "2025-12-20",
+            "lower": 0.0,
+            "prediction": 0.8464807756150644,
+            "upper": 2.7433329117508998
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-21",
+            "lower": 0.0,
+            "prediction": 0.7646384807087397,
+            "upper": 2.661490616844575
+          },
+          {
+            "actual": 2.0,
+            "date": "2025-12-22",
+            "lower": 0.0,
+            "prediction": 0.572490720444948,
+            "upper": 2.4693428565807833
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-23",
+            "lower": 0.0,
+            "prediction": 0.6280221803099441,
+            "upper": 2.5248743164457794
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-24",
+            "lower": 0.0,
+            "prediction": 0.7721569975001181,
+            "upper": 2.669009133635954
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-25",
+            "lower": 0.0,
+            "prediction": 0.8005752015839614,
+            "upper": 2.697427337719797
+          },
+          {
+            "actual": 3.0,
+            "date": "2025-12-26",
+            "lower": 0.0,
+            "prediction": 0.9184567150393292,
+            "upper": 2.815308851175165
+          },
+          {
+            "actual": 4.0,
+            "date": "2025-12-27",
+            "lower": 0.0,
+            "prediction": 0.8790292597309165,
+            "upper": 2.775881395866752
+          },
+          {
+            "actual": 3.0,
+            "date": "2025-12-28",
+            "lower": 0.0,
+            "prediction": 0.7802921701944178,
+            "upper": 2.6771443063302534
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-29",
+            "lower": 0.0,
+            "prediction": 0.7075303793158239,
+            "upper": 2.6043825154516593
+          },
+          {
+            "actual": 2.0,
+            "date": "2025-12-30",
+            "lower": 0.0,
+            "prediction": 0.778604861277451,
+            "upper": 2.6754569974132867
+          },
+          {
+            "actual": 7.0,
+            "date": "2025-12-31",
+            "lower": 0.0,
+            "prediction": 0.9030111851717672,
+            "upper": 2.7998633213076025
+          }
+        ],
+        "test_band_coverage_percent": 82.142857,
+        "test_days": 28,
+        "test_end": "2025-12-31",
+        "test_start": "2025-12-04"
+      },
+      "horizon_days": 14,
+      "limitations": [
+        "Synthetic source data; evaluation does not establish real-world predictive value.",
+        "Calendar gaps within warehouse coverage are treated as zero orders; upstream completeness is assumed.",
+        "Forecast origin follows the dataset, not today. No observations exist beyond as_of.",
+        "Error bands use 28 historical calibration errors; temporal dependence and small samples limit coverage guarantees.",
+        "Market-level order forecasts do not measure stock, supplier lead times or inventory requirements."
+      ],
+      "selected_label": "Ridge autoregression",
+      "selected_model": "ridge_autoregression",
+      "selection_rule": "Lowest mean absolute error across three expanding-window 14-day validation folds; final test excluded.",
+      "status": "ready",
+      "training_days": 365
+    },
+    "Chicago": {
+      "active_days": 268,
+      "anomalies": {
+        "evaluation": "No labeled incidents are available; precision, recall, and business impact are not established.",
+        "flags": [
+          {
+            "actual": 163.62,
+            "date": "2025-03-22",
+            "direction": "high",
+            "expected": 0.0,
+            "metric": "revenue",
+            "reference_points": 8,
+            "score": 7.914
+          },
+          {
+            "actual": 358.11,
+            "date": "2025-07-18",
+            "direction": "high",
+            "expected": 0.0,
+            "metric": "revenue",
+            "reference_points": 8,
+            "score": 5.1337
+          },
+          {
+            "actual": 147.25,
+            "date": "2025-03-13",
+            "direction": "high",
+            "expected": 21.355,
+            "metric": "revenue",
+            "reference_points": 8,
+            "score": 5.05
+          },
+          {
+            "actual": 165.91,
+            "date": "2025-03-12",
+            "direction": "high",
+            "expected": 24.655,
+            "metric": "revenue",
+            "reference_points": 8,
+            "score": 3.9517
+          },
+          {
+            "actual": 71.28,
+            "date": "2025-03-02",
+            "direction": "high",
+            "expected": 0.0,
+            "metric": "revenue",
+            "reference_points": 8,
+            "score": 3.564
+          },
+          {
+            "actual": 154.08,
+            "date": "2025-02-16",
+            "direction": "high",
+            "expected": 0.0,
+            "metric": "revenue",
+            "reference_points": 6,
+            "score": 3.5591
+          }
+        ],
+        "lookback_days": 56,
+        "method": "Past-only weekday median and MAD with scale floors",
+        "minimum_prior_observations": 28,
+        "threshold": 3.5
+      },
+      "as_of": "2025-12-31",
+      "evaluation": {
+        "calibration_end": "2025-12-03",
+        "calibration_start": "2025-11-06",
+        "candidates": {
+          "ridge_autoregression": {
+            "label": "Ridge autoregression",
+            "test": {
+              "mae": 0.954529,
+              "rmse": 1.186072,
+              "wape_percent": 89.089369
+            },
+            "validation": {
+              "mae": 0.868545,
+              "rmse": 1.019332,
+              "wape_percent": 72.957742
+            }
+          },
+          "seasonal_naive": {
+            "label": "Weekly seasonal naive",
+            "test": {
+              "mae": 0.857143,
+              "rmse": 1.38873,
+              "wape_percent": 80.0
+            },
+            "validation": {
+              "mae": 1.333333,
+              "rmse": 1.661898,
+              "wape_percent": 112.0
+            }
+          },
+          "trailing_mean": {
+            "label": "28-day trailing mean",
+            "test": {
+              "mae": 0.826531,
+              "rmse": 1.151751,
+              "wape_percent": 77.142857
+            },
+            "validation": {
+              "mae": 0.795918,
+              "rmse": 0.954314,
+              "wape_percent": 66.857143
+            }
+          }
+        },
+        "error_band_nominal_percent": 80,
+        "error_band_width": 1.214286,
+        "folds": [
+          {
+            "train_end": "2025-09-24",
+            "validation_end": "2025-10-08",
+            "validation_start": "2025-09-25"
+          },
+          {
+            "train_end": "2025-10-08",
+            "validation_end": "2025-10-22",
+            "validation_start": "2025-10-09"
+          },
+          {
+            "train_end": "2025-10-22",
+            "validation_end": "2025-11-05",
+            "validation_start": "2025-10-23"
+          }
+        ],
+        "heldout": [
+          {
+            "actual": 0.0,
+            "date": "2025-12-04",
+            "lower": 0.07142857142857162,
+            "prediction": 1.2857142857142858,
+            "upper": 2.5
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-05",
+            "lower": 0.07142857142857162,
+            "prediction": 1.2857142857142858,
+            "upper": 2.5
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-06",
+            "lower": 0.07142857142857162,
+            "prediction": 1.2857142857142858,
+            "upper": 2.5
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-07",
+            "lower": 0.07142857142857162,
+            "prediction": 1.2857142857142858,
+            "upper": 2.5
+          },
+          {
+            "actual": 0.0,
+            "date": "2025-12-08",
+            "lower": 0.07142857142857162,
+            "prediction": 1.2857142857142858,
+            "upper": 2.5
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-09",
+            "lower": 0.07142857142857162,
+            "prediction": 1.2857142857142858,
+            "upper": 2.5
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-10",
+            "lower": 0.07142857142857162,
+            "prediction": 1.2857142857142858,
+            "upper": 2.5
+          },
+          {
+            "actual": 4.0,
+            "date": "2025-12-11",
+            "lower": 0.07142857142857162,
+            "prediction": 1.2857142857142858,
+            "upper": 2.5
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-12",
+            "lower": 0.07142857142857162,
+            "prediction": 1.2857142857142858,
+            "upper": 2.5
+          },
+          {
+            "actual": 2.0,
+            "date": "2025-12-13",
+            "lower": 0.07142857142857162,
+            "prediction": 1.2857142857142858,
+            "upper": 2.5
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-14",
+            "lower": 0.07142857142857162,
+            "prediction": 1.2857142857142858,
+            "upper": 2.5
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-15",
+            "lower": 0.07142857142857162,
+            "prediction": 1.2857142857142858,
+            "upper": 2.5
+          },
+          {
+            "actual": 0.0,
+            "date": "2025-12-16",
+            "lower": 0.07142857142857162,
+            "prediction": 1.2857142857142858,
+            "upper": 2.5
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-17",
+            "lower": 0.07142857142857162,
+            "prediction": 1.2857142857142858,
+            "upper": 2.5
+          },
+          {
+            "actual": 0.0,
+            "date": "2025-12-18",
+            "lower": 0.07142857142857162,
+            "prediction": 1.2857142857142858,
+            "upper": 2.5
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-19",
+            "lower": 0.07142857142857162,
+            "prediction": 1.2857142857142858,
+            "upper": 2.5
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-20",
+            "lower": 0.07142857142857162,
+            "prediction": 1.2857142857142858,
+            "upper": 2.5
+          },
+          {
+            "actual": 0.0,
+            "date": "2025-12-21",
+            "lower": 0.07142857142857162,
+            "prediction": 1.2857142857142858,
+            "upper": 2.5
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-22",
+            "lower": 0.07142857142857162,
+            "prediction": 1.2857142857142858,
+            "upper": 2.5
+          },
+          {
+            "actual": 0.0,
+            "date": "2025-12-23",
+            "lower": 0.07142857142857162,
+            "prediction": 1.2857142857142858,
+            "upper": 2.5
+          },
+          {
+            "actual": 2.0,
+            "date": "2025-12-24",
+            "lower": 0.07142857142857162,
+            "prediction": 1.2857142857142858,
+            "upper": 2.5
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-25",
+            "lower": 0.07142857142857162,
+            "prediction": 1.2857142857142858,
+            "upper": 2.5
+          },
+          {
+            "actual": 5.0,
+            "date": "2025-12-26",
+            "lower": 0.07142857142857162,
+            "prediction": 1.2857142857142858,
+            "upper": 2.5
+          },
+          {
+            "actual": 0.0,
+            "date": "2025-12-27",
+            "lower": 0.07142857142857162,
+            "prediction": 1.2857142857142858,
+            "upper": 2.5
+          },
+          {
+            "actual": 0.0,
+            "date": "2025-12-28",
+            "lower": 0.07142857142857162,
+            "prediction": 1.2857142857142858,
+            "upper": 2.5
+          },
+          {
+            "actual": 2.0,
+            "date": "2025-12-29",
+            "lower": 0.07142857142857162,
+            "prediction": 1.2857142857142858,
+            "upper": 2.5
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-30",
+            "lower": 0.07142857142857162,
+            "prediction": 1.2857142857142858,
+            "upper": 2.5
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-31",
+            "lower": 0.07142857142857162,
+            "prediction": 1.2857142857142858,
+            "upper": 2.5
+          }
+        ],
+        "test_band_coverage_percent": 64.285714,
+        "test_days": 28,
+        "test_end": "2025-12-31",
+        "test_start": "2025-12-04"
+      },
+      "horizon_days": 14,
+      "limitations": [
+        "Synthetic source data; evaluation does not establish real-world predictive value.",
+        "Calendar gaps within warehouse coverage are treated as zero orders; upstream completeness is assumed.",
+        "Forecast origin follows the dataset, not today. No observations exist beyond as_of.",
+        "Error bands use 28 historical calibration errors; temporal dependence and small samples limit coverage guarantees.",
+        "Market-level order forecasts do not measure stock, supplier lead times or inventory requirements."
+      ],
+      "selected_label": "28-day trailing mean",
+      "selected_model": "trailing_mean",
+      "selection_rule": "Lowest mean absolute error across three expanding-window 14-day validation folds; final test excluded.",
+      "status": "ready",
+      "training_days": 365
+    },
+    "Denver": {
+      "active_days": 272,
+      "anomalies": {
+        "evaluation": "No labeled incidents are available; precision, recall, and business impact are not established.",
+        "flags": [
+          {
+            "actual": 322.49,
+            "date": "2025-08-11",
+            "direction": "high",
+            "expected": 21.5,
+            "metric": "revenue",
+            "reference_points": 8,
+            "score": 7.4927
+          },
+          {
+            "actual": 214.87,
+            "date": "2025-07-16",
+            "direction": "high",
+            "expected": 0.0,
+            "metric": "revenue",
+            "reference_points": 8,
+            "score": 7.12
+          },
+          {
+            "actual": 77.34,
+            "date": "2025-07-29",
+            "direction": "high",
+            "expected": 0.0,
+            "metric": "revenue",
+            "reference_points": 8,
+            "score": 7.0684
+          },
+          {
+            "actual": 198.23,
+            "date": "2025-08-10",
+            "direction": "high",
+            "expected": 12.975,
+            "metric": "revenue",
+            "reference_points": 8,
+            "score": 4.6117
+          },
+          {
+            "actual": 265.38,
+            "date": "2025-04-24",
+            "direction": "high",
+            "expected": 0.0,
+            "metric": "revenue",
+            "reference_points": 8,
+            "score": 3.7911
+          },
+          {
+            "actual": 236.93,
+            "date": "2025-07-08",
+            "direction": "high",
+            "expected": 0.0,
+            "metric": "revenue",
+            "reference_points": 8,
+            "score": 3.6274
+          }
+        ],
+        "lookback_days": 56,
+        "method": "Past-only weekday median and MAD with scale floors",
+        "minimum_prior_observations": 28,
+        "threshold": 3.5
+      },
+      "as_of": "2025-12-31",
+      "evaluation": {
+        "calibration_end": "2025-12-03",
+        "calibration_start": "2025-11-06",
+        "candidates": {
+          "ridge_autoregression": {
+            "label": "Ridge autoregression",
+            "test": {
+              "mae": 0.912938,
+              "rmse": 1.071035,
+              "wape_percent": 73.03506
+            },
+            "validation": {
+              "mae": 1.098025,
+              "rmse": 1.488444,
+              "wape_percent": 63.174055
+            }
+          },
+          "seasonal_naive": {
+            "label": "Weekly seasonal naive",
+            "test": {
+              "mae": 1.178571,
+              "rmse": 1.569804,
+              "wape_percent": 94.285714
+            },
+            "validation": {
+              "mae": 1.261905,
+              "rmse": 1.766083,
+              "wape_percent": 72.60274
+            }
+          },
+          "trailing_mean": {
+            "label": "28-day trailing mean",
+            "test": {
+              "mae": 0.831633,
+              "rmse": 1.022702,
+              "wape_percent": 66.530612
+            },
+            "validation": {
+              "mae": 1.042517,
+              "rmse": 1.43895,
+              "wape_percent": 59.980431
+            }
+          }
+        },
+        "error_band_nominal_percent": 80,
+        "error_band_width": 1.857143,
+        "folds": [
+          {
+            "train_end": "2025-09-24",
+            "validation_end": "2025-10-08",
+            "validation_start": "2025-09-25"
+          },
+          {
+            "train_end": "2025-10-08",
+            "validation_end": "2025-10-22",
+            "validation_start": "2025-10-09"
+          },
+          {
+            "train_end": "2025-10-22",
+            "validation_end": "2025-11-05",
+            "validation_start": "2025-10-23"
+          }
+        ],
+        "heldout": [
+          {
+            "actual": 1.0,
+            "date": "2025-12-04",
+            "lower": 0.0,
+            "prediction": 1.2857142857142858,
+            "upper": 3.1428571428571432
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-05",
+            "lower": 0.0,
+            "prediction": 1.2857142857142858,
+            "upper": 3.1428571428571432
+          },
+          {
+            "actual": 2.0,
+            "date": "2025-12-06",
+            "lower": 0.0,
+            "prediction": 1.2857142857142858,
+            "upper": 3.1428571428571432
+          },
+          {
+            "actual": 0.0,
+            "date": "2025-12-07",
+            "lower": 0.0,
+            "prediction": 1.2857142857142858,
+            "upper": 3.1428571428571432
+          },
+          {
+            "actual": 2.0,
+            "date": "2025-12-08",
+            "lower": 0.0,
+            "prediction": 1.2857142857142858,
+            "upper": 3.1428571428571432
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-09",
+            "lower": 0.0,
+            "prediction": 1.2857142857142858,
+            "upper": 3.1428571428571432
+          },
+          {
+            "actual": 0.0,
+            "date": "2025-12-10",
+            "lower": 0.0,
+            "prediction": 1.2857142857142858,
+            "upper": 3.1428571428571432
+          },
+          {
+            "actual": 3.0,
+            "date": "2025-12-11",
+            "lower": 0.0,
+            "prediction": 1.2857142857142858,
+            "upper": 3.1428571428571432
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-12",
+            "lower": 0.0,
+            "prediction": 1.2857142857142858,
+            "upper": 3.1428571428571432
+          },
+          {
+            "actual": 0.0,
+            "date": "2025-12-13",
+            "lower": 0.0,
+            "prediction": 1.2857142857142858,
+            "upper": 3.1428571428571432
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-14",
+            "lower": 0.0,
+            "prediction": 1.2857142857142858,
+            "upper": 3.1428571428571432
+          },
+          {
+            "actual": 0.0,
+            "date": "2025-12-15",
+            "lower": 0.0,
+            "prediction": 1.2857142857142858,
+            "upper": 3.1428571428571432
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-16",
+            "lower": 0.0,
+            "prediction": 1.2857142857142858,
+            "upper": 3.1428571428571432
+          },
+          {
+            "actual": 0.0,
+            "date": "2025-12-17",
+            "lower": 0.0,
+            "prediction": 1.2857142857142858,
+            "upper": 3.1428571428571432
+          },
+          {
+            "actual": 0.0,
+            "date": "2025-12-18",
+            "lower": 0.0,
+            "prediction": 1.2857142857142858,
+            "upper": 3.1428571428571432
+          },
+          {
+            "actual": 2.0,
+            "date": "2025-12-19",
+            "lower": 0.0,
+            "prediction": 1.2857142857142858,
+            "upper": 3.1428571428571432
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-20",
+            "lower": 0.0,
+            "prediction": 1.2857142857142858,
+            "upper": 3.1428571428571432
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-21",
+            "lower": 0.0,
+            "prediction": 1.2857142857142858,
+            "upper": 3.1428571428571432
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-22",
+            "lower": 0.0,
+            "prediction": 1.2857142857142858,
+            "upper": 3.1428571428571432
+          },
+          {
+            "actual": 2.0,
+            "date": "2025-12-23",
+            "lower": 0.0,
+            "prediction": 1.2857142857142858,
+            "upper": 3.1428571428571432
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-24",
+            "lower": 0.0,
+            "prediction": 1.2857142857142858,
+            "upper": 3.1428571428571432
+          },
+          {
+            "actual": 2.0,
+            "date": "2025-12-25",
+            "lower": 0.0,
+            "prediction": 1.2857142857142858,
+            "upper": 3.1428571428571432
+          },
+          {
+            "actual": 2.0,
+            "date": "2025-12-26",
+            "lower": 0.0,
+            "prediction": 1.2857142857142858,
+            "upper": 3.1428571428571432
+          },
+          {
+            "actual": 0.0,
+            "date": "2025-12-27",
+            "lower": 0.0,
+            "prediction": 1.2857142857142858,
+            "upper": 3.1428571428571432
+          },
+          {
+            "actual": 4.0,
+            "date": "2025-12-28",
+            "lower": 0.0,
+            "prediction": 1.2857142857142858,
+            "upper": 3.1428571428571432
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-29",
+            "lower": 0.0,
+            "prediction": 1.2857142857142858,
+            "upper": 3.1428571428571432
+          },
+          {
+            "actual": 3.0,
+            "date": "2025-12-30",
+            "lower": 0.0,
+            "prediction": 1.2857142857142858,
+            "upper": 3.1428571428571432
+          },
+          {
+            "actual": 2.0,
+            "date": "2025-12-31",
+            "lower": 0.0,
+            "prediction": 1.2857142857142858,
+            "upper": 3.1428571428571432
+          }
+        ],
+        "test_band_coverage_percent": 96.428571,
+        "test_days": 28,
+        "test_end": "2025-12-31",
+        "test_start": "2025-12-04"
+      },
+      "horizon_days": 14,
+      "limitations": [
+        "Synthetic source data; evaluation does not establish real-world predictive value.",
+        "Calendar gaps within warehouse coverage are treated as zero orders; upstream completeness is assumed.",
+        "Forecast origin follows the dataset, not today. No observations exist beyond as_of.",
+        "Error bands use 28 historical calibration errors; temporal dependence and small samples limit coverage guarantees.",
+        "Market-level order forecasts do not measure stock, supplier lead times or inventory requirements."
+      ],
+      "selected_label": "28-day trailing mean",
+      "selected_model": "trailing_mean",
+      "selection_rule": "Lowest mean absolute error across three expanding-window 14-day validation folds; final test excluded.",
+      "status": "ready",
+      "training_days": 365
+    },
+    "Phoenix": {
+      "active_days": 284,
+      "anomalies": {
+        "evaluation": "No labeled incidents are available; precision, recall, and business impact are not established.",
+        "flags": [
+          {
+            "actual": 341.2,
+            "date": "2025-03-13",
+            "direction": "high",
+            "expected": 25.945,
+            "metric": "revenue",
+            "reference_points": 8,
+            "score": 4.7143
+          },
+          {
+            "actual": 5.0,
+            "date": "2025-08-30",
+            "direction": "high",
+            "expected": 1.0,
+            "metric": "orders",
+            "reference_points": 8,
+            "score": 4.0
+          },
+          {
+            "actual": 350.68,
+            "date": "2025-09-26",
+            "direction": "high",
+            "expected": 29.475,
+            "metric": "revenue",
+            "reference_points": 8,
+            "score": 3.923
+          },
+          {
+            "actual": 165.83,
+            "date": "2025-06-07",
+            "direction": "high",
+            "expected": 20.68,
+            "metric": "revenue",
+            "reference_points": 8,
+            "score": 3.805
+          }
+        ],
+        "lookback_days": 56,
+        "method": "Past-only weekday median and MAD with scale floors",
+        "minimum_prior_observations": 28,
+        "threshold": 3.5
+      },
+      "as_of": "2025-12-31",
+      "evaluation": {
+        "calibration_end": "2025-12-03",
+        "calibration_start": "2025-11-06",
+        "candidates": {
+          "ridge_autoregression": {
+            "label": "Ridge autoregression",
+            "test": {
+              "mae": 1.017826,
+              "rmse": 1.147474,
+              "wape_percent": 86.360955
+            },
+            "validation": {
+              "mae": 1.068829,
+              "rmse": 1.349954,
+              "wape_percent": 71.255246
+            }
+          },
+          "seasonal_naive": {
+            "label": "Weekly seasonal naive",
+            "test": {
+              "mae": 0.964286,
+              "rmse": 1.267731,
+              "wape_percent": 81.818182
+            },
+            "validation": {
+              "mae": 1.214286,
+              "rmse": 1.654719,
+              "wape_percent": 80.952381
+            }
+          },
+          "trailing_mean": {
+            "label": "28-day trailing mean",
+            "test": {
+              "mae": 1.05102,
+              "rmse": 1.167152,
+              "wape_percent": 89.177489
+            },
+            "validation": {
+              "mae": 1.066327,
+              "rmse": 1.302307,
+              "wape_percent": 71.088435
+            }
+          }
+        },
+        "error_band_nominal_percent": 80,
+        "error_band_width": 1.678571,
+        "folds": [
+          {
+            "train_end": "2025-09-24",
+            "validation_end": "2025-10-08",
+            "validation_start": "2025-09-25"
+          },
+          {
+            "train_end": "2025-10-08",
+            "validation_end": "2025-10-22",
+            "validation_start": "2025-10-09"
+          },
+          {
+            "train_end": "2025-10-22",
+            "validation_end": "2025-11-05",
+            "validation_start": "2025-10-23"
+          }
+        ],
+        "heldout": [
+          {
+            "actual": 1.0,
+            "date": "2025-12-04",
+            "lower": 0.0,
+            "prediction": 1.6428571428571428,
+            "upper": 3.321428571428571
+          },
+          {
+            "actual": 0.0,
+            "date": "2025-12-05",
+            "lower": 0.0,
+            "prediction": 1.6428571428571428,
+            "upper": 3.321428571428571
+          },
+          {
+            "actual": 0.0,
+            "date": "2025-12-06",
+            "lower": 0.0,
+            "prediction": 1.6428571428571428,
+            "upper": 3.321428571428571
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-07",
+            "lower": 0.0,
+            "prediction": 1.6428571428571428,
+            "upper": 3.321428571428571
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-08",
+            "lower": 0.0,
+            "prediction": 1.6428571428571428,
+            "upper": 3.321428571428571
+          },
+          {
+            "actual": 3.0,
+            "date": "2025-12-09",
+            "lower": 0.0,
+            "prediction": 1.6428571428571428,
+            "upper": 3.321428571428571
+          },
+          {
+            "actual": 0.0,
+            "date": "2025-12-10",
+            "lower": 0.0,
+            "prediction": 1.6428571428571428,
+            "upper": 3.321428571428571
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-11",
+            "lower": 0.0,
+            "prediction": 1.6428571428571428,
+            "upper": 3.321428571428571
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-12",
+            "lower": 0.0,
+            "prediction": 1.6428571428571428,
+            "upper": 3.321428571428571
+          },
+          {
+            "actual": 2.0,
+            "date": "2025-12-13",
+            "lower": 0.0,
+            "prediction": 1.6428571428571428,
+            "upper": 3.321428571428571
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-14",
+            "lower": 0.0,
+            "prediction": 1.6428571428571428,
+            "upper": 3.321428571428571
+          },
+          {
+            "actual": 2.0,
+            "date": "2025-12-15",
+            "lower": 0.0,
+            "prediction": 1.6428571428571428,
+            "upper": 3.321428571428571
+          },
+          {
+            "actual": 0.0,
+            "date": "2025-12-16",
+            "lower": 0.0,
+            "prediction": 1.6428571428571428,
+            "upper": 3.321428571428571
+          },
+          {
+            "actual": 3.0,
+            "date": "2025-12-17",
+            "lower": 0.0,
+            "prediction": 1.6428571428571428,
+            "upper": 3.321428571428571
+          },
+          {
+            "actual": 3.0,
+            "date": "2025-12-18",
+            "lower": 0.0,
+            "prediction": 1.6428571428571428,
+            "upper": 3.321428571428571
+          },
+          {
+            "actual": 3.0,
+            "date": "2025-12-19",
+            "lower": 0.0,
+            "prediction": 1.6428571428571428,
+            "upper": 3.321428571428571
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-20",
+            "lower": 0.0,
+            "prediction": 1.6428571428571428,
+            "upper": 3.321428571428571
+          },
+          {
+            "actual": 0.0,
+            "date": "2025-12-21",
+            "lower": 0.0,
+            "prediction": 1.6428571428571428,
+            "upper": 3.321428571428571
+          },
+          {
+            "actual": 0.0,
+            "date": "2025-12-22",
+            "lower": 0.0,
+            "prediction": 1.6428571428571428,
+            "upper": 3.321428571428571
+          },
+          {
+            "actual": 0.0,
+            "date": "2025-12-23",
+            "lower": 0.0,
+            "prediction": 1.6428571428571428,
+            "upper": 3.321428571428571
+          },
+          {
+            "actual": 2.0,
+            "date": "2025-12-24",
+            "lower": 0.0,
+            "prediction": 1.6428571428571428,
+            "upper": 3.321428571428571
+          },
+          {
+            "actual": 0.0,
+            "date": "2025-12-25",
+            "lower": 0.0,
+            "prediction": 1.6428571428571428,
+            "upper": 3.321428571428571
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-26",
+            "lower": 0.0,
+            "prediction": 1.6428571428571428,
+            "upper": 3.321428571428571
+          },
+          {
+            "actual": 0.0,
+            "date": "2025-12-27",
+            "lower": 0.0,
+            "prediction": 1.6428571428571428,
+            "upper": 3.321428571428571
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-28",
+            "lower": 0.0,
+            "prediction": 1.6428571428571428,
+            "upper": 3.321428571428571
+          },
+          {
+            "actual": 2.0,
+            "date": "2025-12-29",
+            "lower": 0.0,
+            "prediction": 1.6428571428571428,
+            "upper": 3.321428571428571
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-30",
+            "lower": 0.0,
+            "prediction": 1.6428571428571428,
+            "upper": 3.321428571428571
+          },
+          {
+            "actual": 3.0,
+            "date": "2025-12-31",
+            "lower": 0.0,
+            "prediction": 1.6428571428571428,
+            "upper": 3.321428571428571
+          }
+        ],
+        "test_band_coverage_percent": 100.0,
+        "test_days": 28,
+        "test_end": "2025-12-31",
+        "test_start": "2025-12-04"
+      },
+      "horizon_days": 14,
+      "limitations": [
+        "Synthetic source data; evaluation does not establish real-world predictive value.",
+        "Calendar gaps within warehouse coverage are treated as zero orders; upstream completeness is assumed.",
+        "Forecast origin follows the dataset, not today. No observations exist beyond as_of.",
+        "Error bands use 28 historical calibration errors; temporal dependence and small samples limit coverage guarantees.",
+        "Market-level order forecasts do not measure stock, supplier lead times or inventory requirements."
+      ],
+      "selected_label": "28-day trailing mean",
+      "selected_model": "trailing_mean",
+      "selection_rule": "Lowest mean absolute error across three expanding-window 14-day validation folds; final test excluded.",
+      "status": "ready",
+      "training_days": 365
+    },
+    "Seattle": {
+      "active_days": 267,
+      "anomalies": {
+        "evaluation": "No labeled incidents are available; precision, recall, and business impact are not established.",
+        "flags": [
+          {
+            "actual": 210.97,
+            "date": "2025-02-19",
+            "direction": "high",
+            "expected": 27.86,
+            "metric": "revenue",
+            "reference_points": 7,
+            "score": 4.1237
+          },
+          {
+            "actual": 433.97,
+            "date": "2025-03-24",
+            "direction": "high",
+            "expected": 90.465,
+            "metric": "revenue",
+            "reference_points": 8,
+            "score": 3.9104
+          }
+        ],
+        "lookback_days": 56,
+        "method": "Past-only weekday median and MAD with scale floors",
+        "minimum_prior_observations": 28,
+        "threshold": 3.5
+      },
+      "as_of": "2025-12-31",
+      "evaluation": {
+        "calibration_end": "2025-12-03",
+        "calibration_start": "2025-11-06",
+        "candidates": {
+          "ridge_autoregression": {
+            "label": "Ridge autoregression",
+            "test": {
+              "mae": 0.940354,
+              "rmse": 1.109079,
+              "wape_percent": 65.824796
+            },
+            "validation": {
+              "mae": 1.004415,
+              "rmse": 1.142583,
+              "wape_percent": 78.121201
+            }
+          },
+          "seasonal_naive": {
+            "label": "Weekly seasonal naive",
+            "test": {
+              "mae": 1.0,
+              "rmse": 1.253566,
+              "wape_percent": 70.0
+            },
+            "validation": {
+              "mae": 1.238095,
+              "rmse": 1.647509,
+              "wape_percent": 96.296296
+            }
+          },
+          "trailing_mean": {
+            "label": "28-day trailing mean",
+            "test": {
+              "mae": 0.887755,
+              "rmse": 1.104259,
+              "wape_percent": 62.142857
+            },
+            "validation": {
+              "mae": 1.02381,
+              "rmse": 1.224398,
+              "wape_percent": 79.62963
+            }
+          }
+        },
+        "error_band_nominal_percent": 80,
+        "error_band_width": 1.538415,
+        "folds": [
+          {
+            "train_end": "2025-09-24",
+            "validation_end": "2025-10-08",
+            "validation_start": "2025-09-25"
+          },
+          {
+            "train_end": "2025-10-08",
+            "validation_end": "2025-10-22",
+            "validation_start": "2025-10-09"
+          },
+          {
+            "train_end": "2025-10-22",
+            "validation_end": "2025-11-05",
+            "validation_start": "2025-10-23"
+          }
+        ],
+        "heldout": [
+          {
+            "actual": 0.0,
+            "date": "2025-12-04",
+            "lower": 0.0,
+            "prediction": 1.38135041738505,
+            "upper": 2.919765365349189
+          },
+          {
+            "actual": 0.0,
+            "date": "2025-12-05",
+            "lower": 0.0,
+            "prediction": 1.134126479701584,
+            "upper": 2.672541427665723
+          },
+          {
+            "actual": 3.0,
+            "date": "2025-12-06",
+            "lower": 0.0,
+            "prediction": 1.3957105319280039,
+            "upper": 2.9341254798921432
+          },
+          {
+            "actual": 2.0,
+            "date": "2025-12-07",
+            "lower": 0.0,
+            "prediction": 1.537383066754128,
+            "upper": 3.0757980147182673
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-08",
+            "lower": 0.0,
+            "prediction": 1.4887622989133074,
+            "upper": 3.0271772468774465
+          },
+          {
+            "actual": 2.0,
+            "date": "2025-12-09",
+            "lower": 0.0,
+            "prediction": 1.267003314136926,
+            "upper": 2.8054182621010653
+          },
+          {
+            "actual": 2.0,
+            "date": "2025-12-10",
+            "lower": 0.0,
+            "prediction": 0.937303654598524,
+            "upper": 2.4757186025626634
+          },
+          {
+            "actual": 2.0,
+            "date": "2025-12-11",
+            "lower": 0.0,
+            "prediction": 1.1581552338712542,
+            "upper": 2.6965701818353933
+          },
+          {
+            "actual": 0.0,
+            "date": "2025-12-12",
+            "lower": 0.0,
+            "prediction": 1.2485451203120468,
+            "upper": 2.786960068276186
+          },
+          {
+            "actual": 2.0,
+            "date": "2025-12-13",
+            "lower": 0.0,
+            "prediction": 1.3046636118940493,
+            "upper": 2.8430785598581885
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-14",
+            "lower": 0.0,
+            "prediction": 1.309492980102349,
+            "upper": 2.8479079280664883
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-15",
+            "lower": 0.0,
+            "prediction": 1.3001927495463357,
+            "upper": 2.838607697510475
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-16",
+            "lower": 0.0,
+            "prediction": 1.331636583709387,
+            "upper": 2.8700515316735267
+          },
+          {
+            "actual": 3.0,
+            "date": "2025-12-17",
+            "lower": 0.0,
+            "prediction": 1.258917237752653,
+            "upper": 2.797332185716792
+          },
+          {
+            "actual": 2.0,
+            "date": "2025-12-18",
+            "lower": 0.0,
+            "prediction": 1.174182642865925,
+            "upper": 2.7125975908300646
+          },
+          {
+            "actual": 0.0,
+            "date": "2025-12-19",
+            "lower": 0.0,
+            "prediction": 1.3300671257997263,
+            "upper": 2.8684820737638654
+          },
+          {
+            "actual": 0.0,
+            "date": "2025-12-20",
+            "lower": 0.0,
+            "prediction": 1.3911556452239977,
+            "upper": 2.929570593188137
+          },
+          {
+            "actual": 3.0,
+            "date": "2025-12-21",
+            "lower": 0.0,
+            "prediction": 1.4360430026608928,
+            "upper": 2.974457950625032
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-22",
+            "lower": 0.0,
+            "prediction": 1.3325927058845632,
+            "upper": 2.871007653848703
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-23",
+            "lower": 0.0,
+            "prediction": 1.2986060970943372,
+            "upper": 2.8370210450584765
+          },
+          {
+            "actual": 4.0,
+            "date": "2025-12-24",
+            "lower": 0.0,
+            "prediction": 1.318692216375732,
+            "upper": 2.8571071643398716
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-25",
+            "lower": 0.0,
+            "prediction": 1.3107897306761889,
+            "upper": 2.8492046786403282
+          },
+          {
+            "actual": 2.0,
+            "date": "2025-12-26",
+            "lower": 0.0,
+            "prediction": 1.3025665571030014,
+            "upper": 2.8409815050671408
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-27",
+            "lower": 0.0,
+            "prediction": 1.4079352760493233,
+            "upper": 2.9463502240134627
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-28",
+            "lower": 0.0,
+            "prediction": 1.4913687015286259,
+            "upper": 3.0297836494927655
+          },
+          {
+            "actual": 1.0,
+            "date": "2025-12-29",
+            "lower": 0.0,
+            "prediction": 1.5131202650087499,
+            "upper": 3.0515352129728894
+          },
+          {
+            "actual": 0.0,
+            "date": "2025-12-30",
+            "lower": 0.0,
+            "prediction": 1.4408180084351296,
+            "upper": 2.9792329563992688
+          },
+          {
+            "actual": 3.0,
+            "date": "2025-12-31",
+            "lower": 0.0,
+            "prediction": 1.29002068940742,
+            "upper": 2.8284356373715593
+          }
+        ],
+        "test_band_coverage_percent": 82.142857,
+        "test_days": 28,
+        "test_end": "2025-12-31",
+        "test_start": "2025-12-04"
+      },
+      "horizon_days": 14,
+      "limitations": [
+        "Synthetic source data; evaluation does not establish real-world predictive value.",
+        "Calendar gaps within warehouse coverage are treated as zero orders; upstream completeness is assumed.",
+        "Forecast origin follows the dataset, not today. No observations exist beyond as_of.",
+        "Error bands use 28 historical calibration errors; temporal dependence and small samples limit coverage guarantees.",
+        "Market-level order forecasts do not measure stock, supplier lead times or inventory requirements."
+      ],
+      "selected_label": "Ridge autoregression",
+      "selected_model": "ridge_autoregression",
+      "selection_rule": "Lowest mean absolute error across three expanding-window 14-day validation folds; final test excluded.",
+      "status": "ready",
+      "training_days": 365
+    },
+    "__all__": {
+      "active_days": 365,
+      "anomalies": {
+        "evaluation": "No labeled incidents are available; precision, recall, and business impact are not established.",
+        "flags": [
+          {
+            "actual": 769.59,
+            "date": "2025-03-13",
+            "direction": "high",
+            "expected": 262.43,
+            "metric": "revenue",
+            "reference_points": 8,
+            "score": 4.0994
+          },
+          {
+            "actual": 19.0,
+            "date": "2025-10-13",
+            "direction": "high",
+            "expected": 7.0,
+            "metric": "orders",
+            "reference_points": 8,
+            "score": 4.0469
+          },
+          {
+            "actual": 72.0,
+            "date": "2025-07-01",
+            "direction": "high",
+            "expected": 46.9524,
+            "metric": "delivery_minutes",
+            "reference_points": 8,
+            "score": 3.8851
+          },
+          {
+            "actual": 930.99,
+            "date": "2025-03-24",
+            "direction": "high",
+            "expected": 354.73,
+            "metric": "revenue",
+            "reference_points": 8,
+            "score": 3.6133
+          }
+        ],
+        "lookback_days": 56,
+        "method": "Past-only weekday median and MAD with scale floors",
+        "minimum_prior_observations": 28,
+        "threshold": 3.5
+      },
+      "as_of": "2025-12-31",
+      "evaluation": {
+        "calibration_end": "2025-12-03",
+        "calibration_start": "2025-11-06",
+        "candidates": {
+          "ridge_autoregression": {
+            "label": "Ridge autoregression",
+            "test": {
+              "mae": 2.762299,
+              "rmse": 3.255362,
+              "wape_percent": 35.642562
+            },
+            "validation": {
+              "mae": 2.562244,
+              "rmse": 3.367589,
+              "wape_percent": 31.744613
+            }
+          },
+          "seasonal_naive": {
+            "label": "Weekly seasonal naive",
+            "test": {
+              "mae": 2.964286,
+              "rmse": 3.520349,
+              "wape_percent": 38.248848
+            },
+            "validation": {
+              "mae": 3.357143,
+              "rmse": 4.517163,
+              "wape_percent": 41.59292
+            }
+          },
+          "trailing_mean": {
+            "label": "28-day trailing mean",
+            "test": {
+              "mae": 2.69898,
+              "rmse": 3.274048,
+              "wape_percent": 34.825543
+            },
+            "validation": {
+              "mae": 2.382653,
+              "rmse": 3.201097,
+              "wape_percent": 29.519595
+            }
+          }
+        },
+        "error_band_nominal_percent": 80,
+        "error_band_width": 5.392857,
+        "folds": [
+          {
+            "train_end": "2025-09-24",
+            "validation_end": "2025-10-08",
+            "validation_start": "2025-09-25"
+          },
+          {
+            "train_end": "2025-10-08",
+            "validation_end": "2025-10-22",
+            "validation_start": "2025-10-09"
+          },
+          {
+            "train_end": "2025-10-22",
+            "validation_end": "2025-11-05",
+            "validation_start": "2025-10-23"
+          }
+        ],
+        "heldout": [
+          {
+            "actual": 3.0,
+            "date": "2025-12-04",
+            "lower": 3.0357142857142865,
+            "prediction": 8.428571428571429,
+            "upper": 13.821428571428571
+          },
+          {
+            "actual": 5.0,
+            "date": "2025-12-05",
+            "lower": 3.0357142857142865,
+            "prediction": 8.428571428571429,
+            "upper": 13.821428571428571
+          },
+          {
+            "actual": 6.0,
+            "date": "2025-12-06",
+            "lower": 3.0357142857142865,
+            "prediction": 8.428571428571429,
+            "upper": 13.821428571428571
+          },
+          {
+            "actual": 6.0,
+            "date": "2025-12-07",
+            "lower": 3.0357142857142865,
+            "prediction": 8.428571428571429,
+            "upper": 13.821428571428571
+          },
+          {
+            "actual": 5.0,
+            "date": "2025-12-08",
+            "lower": 3.0357142857142865,
+            "prediction": 8.428571428571429,
+            "upper": 13.821428571428571
+          },
+          {
+            "actual": 11.0,
+            "date": "2025-12-09",
+            "lower": 3.0357142857142865,
+            "prediction": 8.428571428571429,
+            "upper": 13.821428571428571
+          },
+          {
+            "actual": 5.0,
+            "date": "2025-12-10",
+            "lower": 3.0357142857142865,
+            "prediction": 8.428571428571429,
+            "upper": 13.821428571428571
+          },
+          {
+            "actual": 11.0,
+            "date": "2025-12-11",
+            "lower": 3.0357142857142865,
+            "prediction": 8.428571428571429,
+            "upper": 13.821428571428571
+          },
+          {
+            "actual": 5.0,
+            "date": "2025-12-12",
+            "lower": 3.0357142857142865,
+            "prediction": 8.428571428571429,
+            "upper": 13.821428571428571
+          },
+          {
+            "actual": 9.0,
+            "date": "2025-12-13",
+            "lower": 3.0357142857142865,
+            "prediction": 8.428571428571429,
+            "upper": 13.821428571428571
+          },
+          {
+            "actual": 7.0,
+            "date": "2025-12-14",
+            "lower": 3.0357142857142865,
+            "prediction": 8.428571428571429,
+            "upper": 13.821428571428571
+          },
+          {
+            "actual": 6.0,
+            "date": "2025-12-15",
+            "lower": 3.0357142857142865,
+            "prediction": 8.428571428571429,
+            "upper": 13.821428571428571
+          },
+          {
+            "actual": 4.0,
+            "date": "2025-12-16",
+            "lower": 3.0357142857142865,
+            "prediction": 8.428571428571429,
+            "upper": 13.821428571428571
+          },
+          {
+            "actual": 10.0,
+            "date": "2025-12-17",
+            "lower": 3.0357142857142865,
+            "prediction": 8.428571428571429,
+            "upper": 13.821428571428571
+          },
+          {
+            "actual": 10.0,
+            "date": "2025-12-18",
+            "lower": 3.0357142857142865,
+            "prediction": 8.428571428571429,
+            "upper": 13.821428571428571
+          },
+          {
+            "actual": 9.0,
+            "date": "2025-12-19",
+            "lower": 3.0357142857142865,
+            "prediction": 8.428571428571429,
+            "upper": 13.821428571428571
+          },
+          {
+            "actual": 6.0,
+            "date": "2025-12-20",
+            "lower": 3.0357142857142865,
+            "prediction": 8.428571428571429,
+            "upper": 13.821428571428571
+          },
+          {
+            "actual": 7.0,
+            "date": "2025-12-21",
+            "lower": 3.0357142857142865,
+            "prediction": 8.428571428571429,
+            "upper": 13.821428571428571
+          },
+          {
+            "actual": 5.0,
+            "date": "2025-12-22",
+            "lower": 3.0357142857142865,
+            "prediction": 8.428571428571429,
+            "upper": 13.821428571428571
+          },
+          {
+            "actual": 6.0,
+            "date": "2025-12-23",
+            "lower": 3.0357142857142865,
+            "prediction": 8.428571428571429,
+            "upper": 13.821428571428571
+          },
+          {
+            "actual": 11.0,
+            "date": "2025-12-24",
+            "lower": 3.0357142857142865,
+            "prediction": 8.428571428571429,
+            "upper": 13.821428571428571
+          },
+          {
+            "actual": 6.0,
+            "date": "2025-12-25",
+            "lower": 3.0357142857142865,
+            "prediction": 8.428571428571429,
+            "upper": 13.821428571428571
+          },
+          {
+            "actual": 14.0,
+            "date": "2025-12-26",
+            "lower": 3.0357142857142865,
+            "prediction": 8.428571428571429,
+            "upper": 13.821428571428571
+          },
+          {
+            "actual": 7.0,
+            "date": "2025-12-27",
+            "lower": 3.0357142857142865,
+            "prediction": 8.428571428571429,
+            "upper": 13.821428571428571
+          },
+          {
+            "actual": 9.0,
+            "date": "2025-12-28",
+            "lower": 3.0357142857142865,
+            "prediction": 8.428571428571429,
+            "upper": 13.821428571428571
+          },
+          {
+            "actual": 7.0,
+            "date": "2025-12-29",
+            "lower": 3.0357142857142865,
+            "prediction": 8.428571428571429,
+            "upper": 13.821428571428571
+          },
+          {
+            "actual": 9.0,
+            "date": "2025-12-30",
+            "lower": 3.0357142857142865,
+            "prediction": 8.428571428571429,
+            "upper": 13.821428571428571
+          },
+          {
+            "actual": 18.0,
+            "date": "2025-12-31",
+            "lower": 3.0357142857142865,
+            "prediction": 8.428571428571429,
+            "upper": 13.821428571428571
+          }
+        ],
+        "test_band_coverage_percent": 89.285714,
+        "test_days": 28,
+        "test_end": "2025-12-31",
+        "test_start": "2025-12-04"
+      },
+      "horizon_days": 14,
+      "limitations": [
+        "Synthetic source data; evaluation does not establish real-world predictive value.",
+        "Calendar gaps within warehouse coverage are treated as zero orders; upstream completeness is assumed.",
+        "Forecast origin follows the dataset, not today. No observations exist beyond as_of.",
+        "Error bands use 28 historical calibration errors; temporal dependence and small samples limit coverage guarantees.",
+        "Market-level order forecasts do not measure stock, supplier lead times or inventory requirements."
+      ],
+      "selected_label": "28-day trailing mean",
+      "selected_model": "trailing_mean",
+      "selection_rule": "Lowest mean absolute error across three expanding-window 14-day validation folds; final test excluded.",
+      "status": "ready",
+      "training_days": 365
+    }
+  },
+  "packages": {
+    "numpy": "2.5.4",
+    "python": "3.12.14",
+    "scikit_learn": "1.9.1"
+  },
+  "source": {
+    "end": "2025-12-31",
+    "orders": 3000,
+    "start": "2025-01-01",
+    "synthetic": true
+  },
+  "trained_at": "2026-10-22T05:13:30.201395+00:00",
+  "version": 1
+}

@@ -20,3 +20,6 @@ frontend/playwright-report/
 
 .venv-api/
 frontend/.next-postgres/
+
+artifacts/
+frontend/.next-intelligence/

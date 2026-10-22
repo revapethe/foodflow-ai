@@ -1,4 +1,4 @@
-name: Phase 2 warehouse validation
+name: Warehouse and intelligence validation
 on:
   workflow_dispatch:
   pull_request:

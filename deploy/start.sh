@@ -34,7 +34,11 @@ for attempt in range(60):
 else:
     raise SystemExit('FastAPI failed readiness; inspect the service logs.')
 PY
-node frontend/node_modules/next/dist/bin/next start frontend --hostname 0.0.0.0 --port "$port" &
+if [[ -f frontend/server.js ]]; then
+  HOSTNAME=0.0.0.0 PORT="$port" node frontend/server.js &
+else
+  node frontend/node_modules/next/dist/bin/next start frontend --hostname 0.0.0.0 --port "$port" &
+fi
 web_pid=$!
 set +e
 wait -n "$api_pid" "$web_pid"

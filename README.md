@@ -27,6 +27,10 @@ The project also includes two optional generative-AI extensions:
 The cloud integrations require your own AWS, Snowflake, and OpenAI configuration. The repository also provides a local SQLite demo.
 
 
+## Free development phases
+
+The Next.js/FastAPI dashboard preserves the original pipelines and datasets. See [Phase 2 warehouse runbook](PHASE2.md) for incremental PostgreSQL ETL and [Phase 3 demand intelligence](PHASE3.md) for offline forecasting, measured model evaluation, anomaly screening, and cloud-workspace run instructions. SQLite remains the default; these phases require no paid service. The public demo remains on Phase 1 until rollout is reviewed.
+
 ## Architecture
 
 ```mermaid
