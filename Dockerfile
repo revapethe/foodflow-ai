@@ -23,12 +23,13 @@ RUN npm run build \
 FROM python:3.12-slim-bookworm AS python-build
 WORKDIR /build
 RUN python -m venv /opt/venv
-COPY requirements.txt requirements-api.txt requirements-ml.txt ./
+COPY requirements.txt requirements-api.txt requirements-ml.txt requirements-runtime.lock scripts/check_dependencies.py ./
 RUN --mount=type=secret,id=build_ca,mode=0444 \
     if [ -f /run/secrets/build_ca ]; then export PIP_CERT=/run/secrets/build_ca; fi; \
-    /opt/venv/bin/python -m pip install --no-cache-dir --upgrade 'pip>=26.2,<27' \
-    && /opt/venv/bin/python -m pip install --no-cache-dir -r requirements-ml.txt \
-    && /opt/venv/bin/python -m pip check
+    /opt/venv/bin/python -m pip install --no-cache-dir --upgrade 'pip==26.2.2' \
+    && /opt/venv/bin/python -m pip install --no-cache-dir -r requirements-runtime.lock -r requirements-ml.txt \
+    && /opt/venv/bin/python -m pip check \
+    && /opt/venv/bin/python check_dependencies.py --lock requirements-runtime.lock
 COPY --from=python-sources /app/ /build/
 # Combine build steps to avoid large duplicate dependency layers on vfs builders.
 RUN --mount=type=secret,id=build_ca,mode=0444 \
@@ -45,7 +46,10 @@ RUN --mount=type=secret,id=build_ca,mode=0444 \
     && chmod a-w /build/warehouse/foodflow.db \
     && ln -s /build /app
 FROM python-build AS runtime
-ENV PATH="/opt/venv/bin:$PATH" \
+ARG FOODFLOW_REVISION=unknown
+LABEL org.opencontainers.image.revision=$FOODFLOW_REVISION
+ENV FOODFLOW_RELEASE_REVISION=$FOODFLOW_REVISION \
+    PATH="/opt/venv/bin:$PATH" \
     NODE_ENV=production \
     NEXT_TELEMETRY_DISABLED=1 \
     PYTHONDONTWRITEBYTECODE=1 \

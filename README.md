@@ -1,168 +1,86 @@
-<div align="center">
-
 # FoodFlow AI
-### End-to-End Cloud Data Engineering & AI-Powered Food Delivery Analytics
 
+A Food Supply Chain Intelligence Platform demonstrating data engineering, SQL analytics, evaluated forecasting, and a warehouse-backed question interface. The working dashboard uses **Next.js, React, Tailwind CSS, and FastAPI**. All included business observations are **synthetic food-delivery data**.
 
-![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)
-![AWS S3](https://img.shields.io/badge/AWS%20S3-569A31?logo=amazons3&logoColor=white)
-![Snowflake](https://img.shields.io/badge/Snowflake-29B5E8?logo=snowflake&logoColor=white)
-![dbt](https://img.shields.io/badge/dbt-FF694B?logo=dbt&logoColor=white)
-![Airflow](https://img.shields.io/badge/Apache%20Airflow-017CEE?logo=apacheairflow&logoColor=white)
-![OpenAI](https://img.shields.io/badge/OpenAI-412991?logo=openai&logoColor=white)
+The default demo runs as one Docker service with bundled SQLite, offline model artifacts, and no paid API or hosted database. Optional PostgreSQL demonstrates a deeper warehouse workflow. Existing Streamlit, AWS, Snowflake, dbt, Airflow, and OpenAI integrations remain in the repository; external integrations are optional and require separate configuration and validation.
 
-</div>
+## What works
 
----
+| Area | Implementation |
+|---|---|
+| Dashboard | Responsive KPI cards, interactive demand charts, city/date filters, rankings, CSV export |
+| Data engineering | Typed source contracts, quality gates, row-hash incremental upserts, atomic publication, run logs, retry and advisory locking |
+| SQL modeling | Customer/restaurant/food dimensions, order/item/review facts, reporting marts, restricted PostgreSQL reader |
+| Demand intelligence | Seasonal naïve, trailing mean and Ridge candidates; chronological validation/calibration/holdout; empirical bands; stale-artifact rejection |
+| Anomaly screening | Past-only robust daily orders/revenue/duration flags; no unsubstantiated accuracy claims |
+| Natural-language analytics | Free bounded semantic parser, static parameterized SQL, visible results and scope, clarification for unsupported questions |
+| Release engineering | Exact Python dependency snapshots, npm lock, manual CI definition, release reconciliation, Docker recovery checks, rollback runbook |
 
-## Overview
+The all-market warehouse contains **3,000 orders**, **2,645 delivered orders**, and **$144,709.13 delivered revenue**. These values are SQL results, not invented metrics. The selected forecasting baseline has final-test MAE **2.70 orders/day** and WAPE **34.83%**; sparse-market errors are higher. Forecasts use the December 31, 2025 dataset cutoff and are historical demonstrations, not current operational predictions. See [model evidence](reports/phase3-evaluation.json).
 
-**FoodFlow AI** is a portfolio-scale food-delivery analytics platform built around seven related **synthetic** CSV datasets. It demonstrates how to ingest data into a cloud data lake, load a Snowflake warehouse, model analytics-ready datasets with dbt, and explore business performance through a Streamlit dashboard.
-
-The project also includes two optional generative-AI extensions:
-
-- **Review Intelligence:** enrich customer reviews with sentiment, issue categories, and recommendations.
-- **Ask in English (NL-to-SQL):** translate natural-language business questions into validated, read-only Snowflake queries.
-
-The cloud integrations require your own AWS, Snowflake, and OpenAI configuration. The repository also provides a local SQLite demo.
-
-
-## Free development phases
-
-The Next.js/FastAPI dashboard preserves the original pipelines and datasets. See [Phase 2 warehouse runbook](PHASE2.md) for incremental PostgreSQL ETL and [Phase 3 demand intelligence](PHASE3.md) for offline forecasting, measured model evaluation, anomaly screening, and cloud-workspace run instructions. See [Phase 4 warehouse assistant](PHASE4.md) for free, bounded natural-language questions backed by visible SQL and actual results. SQLite remains the default; these phases require no paid service. Public demo updates are deployed separately after rollout review.
+There are no on-hand inventory or supplier records. Units sold are not stock levels; inventory turnover, reorder points, profit, and causal explanations are not fabricated.
 
 ## Architecture
 
 ```mermaid
-flowchart TD
-    A["7 synthetic CSV datasets"] --> B["Python generation & validation"]
-    B --> C["AWS S3 · raw data lake"]
-    C --> D["Snowflake · RAW"]
-    D --> E["dbt · staging models"]
-    E --> F["dbt · dimensions, facts & marts"]
-    F --> G["Streamlit · analytics dashboard"]
-    F --> H["AI · natural language to SQL"]
-    D --> I["AI · review enrichment"]
-    I --> J["Snowflake · AI_REVIEW_INSIGHTS"]
-    J --> G
-    K["Apache Airflow · optional orchestration"] -.-> B
-    K -.-> C
-    K -.-> D
-    K -.-> E
+flowchart LR
+  CSV[Preserved synthetic CSVs] --> ETL[Quality-checked ETL]
+  ETL --> DB[(SQLite or optional PostgreSQL)]
+  DB --> ML[Offline model evaluation]
+  ML --> Artifact[Fingerprint-bound JSON artifact]
+  DB --> API[Read-only FastAPI]
+  Artifact --> API
+  API --> Next[Next.js same-origin API proxy]
+  Next --> UI[Dashboard and warehouse assistant]
 ```
 
-**Data layers:** Source → S3 data lake → Snowflake RAW (bronze) → dbt staging (silver) → dbt analytics marts (gold) → dashboard / AI experiences.
+See [architecture and dimensional model](docs/ARCHITECTURE.md) and the [release/rollback runbook](docs/RELEASE_RUNBOOK.md).
 
+## Run and validate in the cloud workspace
 
-## Features
+No installation on your own computer is required. Run these in the existing Codex checkout. Python 3.12, Node 22, and a Chromium browser are the validated toolchain.
 
-| Area | Implementation |
-|---|---|
-| Data generation | Seven linked CSV datasets with synthetic users, restaurants, menus, orders and reviews |
-| Data engineering | Python ingestion, validation, AWS S3 upload, Snowflake raw loading |
-| Data modeling | dbt staging models, dimensional tables, fact tables, KPI marts and tests |
-| Analytics | Revenue, orders, restaurant performance, top foods and delivery metrics |
-| UI | Red-and-white Streamlit dashboard with interactive visualizations |
-| AI review intelligence | OpenAI-powered sentiment, issue extraction and recommendations; writes enrichment results to Snowflake |
-| Natural-language SQL | Approved-table SQL generation with validation and read-only role enforcement |
-| Orchestration | Optional Apache Airflow DAG for the cloud pipeline |
-| Offline mode | Local SQLite pipeline and basic Streamlit dashboard |
-
-> **Implementation status:** The source code and offline tests are included. Cloud services and AI features must be configured and validated in your own environment. Review enrichment is triggered manually in the UI; it is not yet part of the Airflow DAG.
-
-
-## Datasets
-
-| File | Description |
-|---|---|
-| `users.csv` | Synthetic customer profiles |
-| `restaurant.csv` | Restaurant attributes and cuisines |
-| `food.csv` | Food reference data |
-| `menu.csv` | Restaurant menus and pricing |
-| `orders.csv` | Orders, statuses, amounts and delivery information |
-| `order_items.csv` | Individual purchased items |
-| `reviews.csv` | Customer ratings and text feedback |
-
-The datasets are related through identifiers, enabling referential-integrity checks and multi-table analysis.
-
-
-## 📊 Analytics models
-
-dbt produces the following core tables:
-
-- **Dimensions:** `DIM_CUSTOMER`, `DIM_RESTAURANT`, `DIM_FOOD`
-- **Facts:** `FACT_ORDERS`, `FACT_ORDER_ITEMS`, `FACT_REVIEWS`
-- **Marts:** `MART_DAILY_SALES`, `MART_RESTAURANT_PERFORMANCE`, `MART_TOP_FOODS`, `MART_KPIS`
-
-Delivered-order revenue and food-item revenue have different definitions: item revenue excludes delivery fees. See the SQL models for exact metric definitions.
-
-
-
-## Project structure
-
-```text
-foodflow-ai-cloud/
-├── app.py                       # Local SQLite dashboard
-├── cloud/
-│   ├── dashboard.py             # Red-and-white cloud dashboard
-│   ├── upload_s3.py             # S3 ingestion
-│   ├── load_snowflake.py        # Snowflake RAW loading
-│   └── ai/
-│       ├── review_intelligence.py
-│       └── nl_to_sql.py
-├── src/                         # Synthetic data and local ETL
-├── data/raw/                     # Seven sample CSVs
-├── models/
-│   ├── staging/                  # dbt cleaning / standardization
-│   └── marts/                    # Dimensions, facts, KPI marts
-├── dags/                         # Airflow DAGs
-├── tests/                        # Automated tests
-├── .env.example
-├── profiles.yml.example
-├── requirements-cloud.txt
-├── dbt_project.yml
-├── AI_FEATURES_SETUP.md
-└── README.md
+```bash
+cd /workspace/foodflow-ai
+python -m venv .venv-api
+.venv-api/bin/python -m pip install -r requirements-test.lock -r requirements-test.txt -r requirements-postgres.txt
+.venv-api/bin/python -m pip check
+.venv-api/bin/python scripts/check_dependencies.py --lock requirements-test.lock
+npm ci --prefix frontend --no-fund --no-audit
+# Only for an absent warehouse; never regenerate the preserved CSV sources.
+test -f warehouse/foodflow.db || .venv-api/bin/python -m src.pipeline build
+.venv-api/bin/python -m src.intelligence.train
+FOODFLOW_PYTHON=.venv-api/bin/python CHROMIUM_PATH=/usr/bin/chromium bash scripts/validate_web.sh
 ```
 
-## Security and cost notes
+The validation command builds and starts an isolated API/frontend pair, runs browser tests and release reconciliation, then stops only its own processes. If system Chromium is unavailable, install Playwright Chromium using the frontend's locked Playwright version and omit `CHROMIUM_PATH`. For persistent development services use [Phase 4 startup instructions](PHASE4.md); for a public browser preview use [Render deployment instructions](docs/RENDER_DEPLOYMENT.md). Internal localhost addresses do not open the cloud machine in your own browser.
 
-- Keep S3 buckets private; use minimum-required IAM permissions.
-- Exclude `.env`, secrets, local dbt profiles and virtual environments from Git.
-- Use a dedicated **read-only Snowflake role** for AI-generated SQL.
-- Treat generated SQL and AI summaries as fallible; verify business-critical conclusions.
-- AWS S3, Snowflake and OpenAI may incur charges. Set budgets and suspend idle warehouses.
-- All included business data is synthetic, not real Zomato or customer data.
+For the full PostgreSQL integration suite, start the local development database as described in [PHASE2.md](PHASE2.md), then run:
 
+```bash
+FOODFLOW_TEST_POSTGRES_URL=postgresql://postgres@127.0.0.1:55432/foodflow .venv-api/bin/python -m pytest -q
+```
 
-## Future improvements
+The test DSN must identify a disposable development server: fixtures create/drop uniquely named test databases and roles. Without it, PostgreSQL tests skip; skips do not establish readiness.
 
-- Incremental ingestion and CDC instead of full raw-table refresh
-- Schedule review enrichment with Airflow
-- Add query audit logs and stronger SQL governance
-- Add data freshness monitoring and alerting
-- Deploy the dashboard and add verified execution screenshots
+## Implementation guides
 
+| Phase | Guide |
+|---|---|
+| 1 · Frontend and API | [PHASE1.md](PHASE1.md) (historical phase record) |
+| 2 · Incremental warehouse | [PHASE2.md](PHASE2.md) |
+| 3 · Evaluated forecasting | [PHASE3.md](PHASE3.md) |
+| 4 · Free warehouse assistant | [PHASE4.md](PHASE4.md) |
+| 5 · Release verification and operations | [PHASE5.md](PHASE5.md) |
 
-## Acknowledgments
+## Preserved integrations and repository layout
 
-Built as an independent learning and portfolio implementation, inspired by common food-delivery analytics architectures. Developed with AI-assisted coding support; verify and customize the implementation before presenting it as completed production work.
+`data/raw/` contains the seven linked synthetic datasets. `src/pipeline.py` retains the SQLite build; `src/warehouse/` owns the optional PostgreSQL ETL. `sql/` and `models/` contain reporting/dimensional models, `src/intelligence/` contains offline evaluation, `api/` contains read-only serving, `frontend/` contains the dashboard, and `scripts/` contains operating checks.
 
----
+The original SQLite Streamlit application remains in `app.py`. The optional cloud dashboard, S3 ingestion, Snowflake loading, review enrichment and NL-to-SQL remain in `cloud/`; dbt configuration is at the repository root and Airflow examples are in `dags/`. See [AI_FEATURES_SETUP.md](AI_FEATURES_SETUP.md), `.env.example`, `profiles.yml.example`, and the historical phase guides. Review enrichment is manual; it is not silently scheduled by the current ETL or release workflow. AWS, Snowflake and OpenAI can incur charges and are not needed for the free platform.
 
-<div align="center">
+## Operational limits
 
-**FoodFlow AI** · Data Engineering × Analytics × Generative AI
+This is a validated portfolio/demo implementation, not a claim of unattended enterprise production operation. The public demo has no application authentication and contains only synthetic data. Render's free service can sleep and has account-dependent build/usage quotas. Hosted CI has not been executed by this phase; the manual workflow requires review and availability on the default branch. No push from this branch deploys or creates paid resources. Real customer data, persistent production ingestion, load/SLA targets, and external integrations need separate operational work.
 
-
-</div>
-
-## Next.js intelligence dashboard (Phase 1)
-
-A React / Tailwind dashboard and read-only FastAPI analytics service are available alongside the existing Streamlit applications. See [Phase 1 setup, architecture, metric definitions, and validation](PHASE1.md) for installation, startup commands, and the scope of subsequent phases.
-
-For a browser-accessible demo without local installation, see [Render deployment instructions](docs/RENDER_DEPLOYMENT.md). The deployment uses the Phase 1 branch, bundled synthetic data, and a single Docker service; service creation is a separate approval step.
-
-## Incremental PostgreSQL warehouse (Phase 2)
-
-[Phase 2 architecture, setup, tests, and operating runbook](PHASE2.md) describe the optional PostgreSQL loader: typed snapshot contracts, transactional hash-based upserts, dimensional models, durable run logs, and a read-only dashboard adapter. The SQLite workflow and live Phase 1 demo remain available unchanged. No hosted PostgreSQL service is provisioned by this work.
+Built as an independent learning and portfolio project with AI-assisted coding. Present the measured results and limitations alongside the implementation.

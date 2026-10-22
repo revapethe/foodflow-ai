@@ -34,6 +34,16 @@ def connection():
             db.close()
 
 
+@app.get('/version')
+def version():
+    return {
+        'application': 'FoodFlow Intelligence',
+        'release_revision': os.getenv('RENDER_GIT_COMMIT') or os.getenv('FOODFLOW_RELEASE_REVISION', 'unknown'),
+        'capabilities': ['warehouse_analytics', 'evaluated_demand_forecasts', 'bounded_sql_assistant'],
+        'dataset': 'bundled synthetic delivery data',
+    }
+
+
 @app.get("/health")
 def health(db: Annotated[sqlite3.Connection, Depends(connection)]):
     if db.execute("SELECT order_id FROM fact_orders LIMIT 1").fetchone() is None:

@@ -1,3 +1,5 @@
+> This is the historical Phase 1 deployment record. For the current platform, updating an existing free service, release checks, and rollback, use [RELEASE_RUNBOOK.md](RELEASE_RUNBOOK.md). Do not reapply the old Blueprint branch blindly.
+
 # Publish the Phase 1 demo on Render
 
 This deploys the existing Next.js dashboard and FastAPI read-only analytics as **one Docker web service**. It serves the bundled synthetic delivery data; no AWS, Snowflake, OpenAI, local installation, or external database is needed. Main and Phase 2 are unchanged.

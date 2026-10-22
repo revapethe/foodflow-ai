@@ -27,3 +27,5 @@ artifacts
 frontend/.next-intelligence
 
 frontend/.next-assistant
+
+frontend/.next-release
